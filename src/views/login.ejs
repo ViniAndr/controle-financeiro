@@ -1,0 +1,77 @@
+<%- include("includes/head")%> <%- include("includes/nav")%>
+
+<div class="container">
+  <!-- Criamos uma linha -->
+  <div class="row">
+    <!-- Margin lateral -->
+    <div class="col-lg-2"></div>
+
+    <!-- Conteúdo Principal -->
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Criar Conta ou Entrar</h1>
+      <p class="text-center leed">Faça login ou crie sua conta abaixo</p>
+
+      <%- include("includes/message") %>
+
+      <!-- Uma linha -->
+      <div class="row">
+        <!-- Uma coluna para criar conta -->
+        <div class="col-lg">
+          <h4>Faça seu Cadastro</h4>
+          <p>Se você ainda não tem conta, preencha o formulario abaixo:</p>
+
+          <form class="form-cadastro" action="/login/register" method="POST">
+            <!-- Nome -->
+            <div class="mb-3">
+              <label class="form-label">Seu nome</label>
+              <input type="text" class="form-control" name="nome" />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Seu e-mail</label>
+              <input type="email" class="form-control" name="email" />
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-3">
+              <label class="form-label">Sua senha</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+          </form>
+        </div>
+
+        <!-- Uma coluna para entrar na conta-->
+        <div class="col-lg">
+          <h4>Faça seu login</h4>
+          <p>Se você já tem uma conta, faça seu login no formulario abaixo:</p>
+
+          <form class="form-login" action="/login/login" method="POST">
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Seu e-mail</label>
+              <input type="email" class="form-control" name="email" />
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-3">
+              <label class="form-label">Sua senha</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Margin lateral -->
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include("includes/footer")%>
