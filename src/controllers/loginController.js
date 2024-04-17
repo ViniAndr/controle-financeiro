@@ -41,6 +41,7 @@ exports.login = async (req, res) => {
     }
 
     req.flash("success", "Login feito com sucesso");
+    req.session.user = login.user;
     req.session.save(() => {
       return res.redirect("/");
     });
@@ -48,4 +49,9 @@ exports.login = async (req, res) => {
     console.log("Erro ao registar", e);
     res.render("404");
   }
+};
+
+exports.logout = (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 };
