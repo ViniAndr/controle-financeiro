@@ -20,6 +20,12 @@ class Login {
     this.valida();
     if (this.errors.length > 0) return;
 
+    // verifica se usuário já existe pelo email
+    await LoginModel.findOne({ email: this.body.email }).then((usuario) => {
+      if (usuario) this.errors.push("Email já usado");
+    });
+    if (this.errors.length > 0) return;
+
     // criar usuário
     this.user = await LoginModel.create(this.body);
   }
@@ -32,7 +38,7 @@ class Login {
     if (!validator.isEmail(this.body.email)) {
       this.errors.push("Email invalido!");
     }
-    if (this.body.password < 8 || this.body.password > 35) {
+    if (this.body.password.length < 8 || this.body.password.length > 35) {
       this.errors.push("A senha precisa ter entre 8 e 35 caracteres.");
     }
   }
