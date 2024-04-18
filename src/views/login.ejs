@@ -1,77 +1,27 @@
-<%- include("includes/head")%> <%- include("includes/nav")%>
-
+<%- include("includes/head") %> <%- include("includes/nav") %>
 <div class="container">
-  <!-- Criamos uma linha -->
-  <div class="row">
-    <!-- Margin lateral -->
-    <div class="col-lg-2"></div>
-
-    <!-- Conteúdo Principal -->
-    <div class="col-lg-8 my-3">
+  <div class="row my-5">
+    <div class="col-md-6 offset-md-3 login-form">
       <h1 class="text-center">Criar Conta ou Entrar</h1>
-      <p class="text-center leed">Faça login ou crie sua conta abaixo</p>
-
+      <p class="text-center leed">Preencha os campos abaixo para poder entrar na sua conta:</p>
       <%- include("includes/message") %>
-
-      <!-- Uma linha -->
-      <div class="row">
-        <!-- Uma coluna para criar conta -->
-        <div class="col-lg my-3">
-          <h4>Faça seu Cadastro</h4>
-          <p>Se você ainda não tem conta, preencha o formulario abaixo:</p>
-
-          <form class="form-cadastro" action="/login/register" method="POST">
-            <!-- Nome -->
-            <div class="mb-3">
-              <label class="form-label">Seu nome</label>
-              <input type="text" class="form-control" name="nome" />
-            </div>
-
-            <!-- Email -->
-            <div class="mb-3">
-              <label class="form-label">Seu e-mail</label>
-              <input type="email" class="form-control" name="email" />
-            </div>
-
-            <!-- Senha -->
-            <div class="mb-3">
-              <label class="form-label">Sua senha</label>
-              <input type="password" class="form-control" name="password" />
-            </div>
-
-            <!-- Submit -->
-            <button type="submit" class="btn btn-primary">Criar conta</button>
-          </form>
+      <form action="/login/login" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary loginForm">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" placeholder="name@example.com" name="email" />
+          <label for="floatingInput">Email</label>
         </div>
-
-        <!-- Uma coluna para entrar na conta-->
-        <div class="col-lg my-3">
-          <h4>Faça seu login</h4>
-          <p>Se você já tem uma conta, faça seu login no formulario abaixo:</p>
-
-          <form class="form-login" action="/login/login" method="POST">
-            <!-- Email -->
-            <div class="mb-3">
-              <label class="form-label">Seu e-mail</label>
-              <input type="email" class="form-control" name="email" />
-            </div>
-
-            <!-- Senha -->
-            <div class="mb-3">
-              <label class="form-label">Sua senha</label>
-              <input type="password" class="form-control" name="password" />
-            </div>
-
-            <!-- Submit -->
-            <button type="submit" class="btn btn-primary">Entrar</button>
-          </form>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" placeholder="Senha" name="password" />
+          <label for="floatingPassword">Senha</label>
         </div>
-      </div>
+        <div class="checkbox mb-3">
+          <label> <input type="checkbox" /> Mostrar senha </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar na conta</button>
+        <hr class="my-4" />
+        <small class="text-body-secondary">Se ainda não tem uma conta, faça a sua agora em <a href="/">criar conta</a></small>
+      </form>
     </div>
-
-    <!-- Margin lateral -->
-    <div class="col-lg-2"></div>
   </div>
 </div>
-
-<%- include("includes/footer")%>
+<%- include("includes/footer") %>

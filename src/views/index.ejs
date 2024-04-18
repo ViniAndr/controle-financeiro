@@ -1,32 +1,65 @@
 <%- include("includes/head") %> <%- include("includes/nav") %>
 
-<div class="container">
-  <div class="row my-5">
-    <!-- Margem láteral -->
-    <div class="col-lg-2"></div>
-    <!-- Conteúdo -->
-    <div class="col-lg-8">
-      <h1 class="text-center">Controle Finaçeiro</h1>
-      <p class="text-center leed">Suas despesas estão listada abaixo:</p>
-
-      <%- include("includes/message") %>
-
-      <div class="resposive-table">
-        <table class="table my-3">
-          <tr>
-            <td>16/04/2024</td>
-            <td>100R$</td>
-            <td>Categoria</td>
-            <td>
-              <a href="" class="">Editar</a>
-              <a href="" class="text-danger">Deletar</a>
-            </td>
-          </tr>
-        </table>
-      </div>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <%- include("includes/message") %> <% if(user){ %>
+    <div>
+      <h1 class="display-4 fw-bold">Controle Finaçeiro</h1>
+      <p class="leed">Suas despesas estão listada abaixo:</p>
     </div>
-    <!-- Margem láteral -->
-    <div class="col-lg-2"></div>
+    <div class="resposive-table">
+      <table class="table my-3">
+        <tr>
+          <td>16/04/2024</td>
+          <td>100R$</td>
+          <td>Categoria</td>
+          <td>
+            <a href="" class="">Editar</a>
+            <a href="" class="text-danger">Deletar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>16/04/2024</td>
+          <td>100R$</td>
+          <td>Categoria</td>
+          <td>
+            <a href="" class="">Editar</a>
+            <a href="" class="text-danger">Deletar</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <% } else { %>
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Junte-se a nós para simplificar seus gastos</h1>
+      <p class="col-lg-10 fs-4">
+        Bem-vindo ao nosso mundo de controle financeiro simplificado! Aqui, você pode gerenciar suas despesas de forma
+        inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
+      </p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form action="/login/register" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" placeholder="Nome" name="nome" />
+          <label for="floatingInput">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" placeholder="name@example.com" name="email" />
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" placeholder="Senha" name="password" />
+          <label for="floatingPassword">Senha</label>
+        </div>
+        <div class="checkbox mb-3">
+          <label> <input type="checkbox"/> Mostrar senha </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+        <hr class="my-4" />
+        <small class="text-body-secondary">Se já tem sua conta criada, faça o <a href="/login">login</a></small>
+      </form>
+    </div>
+    <% } %>
   </div>
 </div>
 

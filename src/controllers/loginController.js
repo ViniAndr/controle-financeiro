@@ -12,12 +12,13 @@ exports.register = async (req, res) => {
     if (login.errors.length > 0) {
       req.flash("errors", login.errors);
       req.session.save(() => {
-        return res.redirect("/login");
+        return res.redirect("/");
       });
       return;
     }
 
     req.flash("success", "Conta criada com sucesso");
+    req.session.user = login.user;
     req.session.save(() => {
       return res.redirect("/");
     });
