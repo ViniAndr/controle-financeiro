@@ -5,7 +5,7 @@
       <h1 class="text-center">Criar Conta ou Entrar</h1>
       <p class="text-center leed">Preencha os campos abaixo para poder entrar na sua conta:</p>
       <%- include("includes/message") %>
-      <form action="/login/login" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary loginForm">
+      <form action="/login/login" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary formLogin">
         <div class="form-floating mb-3">
           <input type="email" class="form-control" placeholder="name@example.com" name="email" />
           <label for="floatingInput">Email</label>
@@ -19,7 +19,9 @@
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar na conta</button>
         <hr class="my-4" />
-        <small class="text-body-secondary">Se ainda não tem uma conta, faça a sua agora em <a href="/">criar conta</a></small>
+        <small class="text-body-secondary"
+          >Se ainda não tem uma conta, faça a sua agora em <a href="/">criar conta</a></small
+        >
       </form>
     </div>
   </div>
