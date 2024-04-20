@@ -1,0 +1,53 @@
+<%- include("includes/head") %> <%- include("includes/nav") %>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 offset-md-3 login-form">
+      <h1 class="text-center">Crei um novo lançameno</h1>
+      <p class="text-center leed">Preencha os campos abaixo com os seus gastos ou pagamentos:</p>
+      <%- include("includes/message") %>
+      <form action="/login/login" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary formLogin">
+        <!-- Valor -->
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" name="valor" />
+          <label for="floatingInput">Valor (R$)</label>
+        </div>
+        <!-- Data -->
+        <div class="form-floating mb-3">
+          <input type="date" class="form-control" name="data" />
+          <label for="floatingInput">Data</label>
+        </div>
+        <!-- Categoria -->
+        <select class="form-select pb-3 pt-3 mb-3" name="categoria">
+          <option selected>Categorias</option>
+          <option value="alimentacao">Alimentação</option>
+          <option value="comida">Comida</option>
+          <option value="contas">Contas</option>
+          <option value="curso">Curso</option>
+          <option value="educacao">Educação</option>
+          <option value="escola">Escola</option>
+          <option value="faculdade">Faculdade</option>
+          <option value="jogos">Jogos</option>
+          <option value="lazer">Lazer</option>
+          <option value="moradia">Moradia</option>
+          <option value="outros">Outros</option>
+          <option value="presentes">Presentes</option>
+          <option value="quarto">Quarto</option>
+          <option value="saude">Saúde</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="transporte">Transporte</option>
+        </select>
+        <!-- Forma -->
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="lancamento" checked />
+          <label class="form-check-label" for="flexRadioDefault1"> Entrada </label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" name="lancamento" />
+          <label class="form-check-label" for="flexRadioDefault2"> Saída </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Adicionar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include("includes/footer") %>
