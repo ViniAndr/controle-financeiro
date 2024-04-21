@@ -34,3 +34,15 @@ export function removeMsg() {
     msg.remove();
   });
 }
+
+export function saudacaoHome() {
+  const h1 = document.querySelector(".h1-saudacao");
+  if (!h1) return;
+  const nome = h1.getAttribute("nomePessoa");
+  const data = new Date();
+
+  if (data.getHours() >= 6 && data.getHours() < 12) h1.textContent = `Bom dia ${nome}`;
+  else if (data.getHours() >= 12 && data.getHours() < 18) h1.textContent = `Boa tarde ${nome}`;
+  else if (data.getHours() >= 18 && data.getHours() < 24) h1.textContent = `Boa noite ${nome}`;
+  else h1.textContent = `Boa madrugada ${nome}`;
+}

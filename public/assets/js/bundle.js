@@ -94,6 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   inputInvalido: () => (/* binding */ inputInvalido),
 /* harmony export */   nameInput: () => (/* binding */ nameInput),
 /* harmony export */   removeMsg: () => (/* binding */ removeMsg),
+/* harmony export */   saudacaoHome: () => (/* binding */ saudacaoHome),
 /* harmony export */   senhaInput: () => (/* binding */ senhaInput)
 /* harmony export */ });
 //is-invalid
@@ -123,6 +124,13 @@ function removeMsg() {
   msgs.forEach(function (msg) {
     msg.remove();
   });
+}
+function saudacaoHome() {
+  var h1 = document.querySelector(".h1-saudacao");
+  if (!h1) return;
+  var nome = h1.getAttribute("nomePessoa");
+  var data = new Date();
+  if (data.getHours() >= 6 && data.getHours() < 12) h1.textContent = "Bom dia ".concat(nome);else if (data.getHours() >= 12 && data.getHours() < 18) h1.textContent = "Boa tarde ".concat(nome);else if (data.getHours() >= 18 && data.getHours() < 24) h1.textContent = "Boa noite ".concat(nome);else h1.textContent = "Boa madrugada ".concat(nome);
 }
 
 /***/ }),
@@ -8598,11 +8606,14 @@ var __webpack_exports__ = {};
   \**************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/LoginCadastro */ "./frontend/modules/LoginCadastro.js");
+/* harmony import */ var _modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/domManipulation */ "./frontend/modules/domManipulation.js");
+
 
 var register = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"](".formRegister");
 register.init();
 var login = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"](".formLogin");
 login.init();
+(0,_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.saudacaoHome)();
 })();
 
 /******/ })()

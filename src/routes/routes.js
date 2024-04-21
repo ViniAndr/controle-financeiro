@@ -1,7 +1,7 @@
 const express = require("express");
 const homeController = require("../controllers/homeController");
 const loginController = require("../controllers/loginController");
-const lancamentoController = require("../controllers/lancamentoController");
+const transacaoController = require("../controllers/transacaoController");
 
 //middleware
 const { loginRequired } = require("../middlewares/middleware");
@@ -18,6 +18,7 @@ router.post("/login/login", loginController.login);
 router.get("/logout", loginController.logout);
 
 //cadastro
-router.get("/lancamento", loginRequired, lancamentoController.index);
+router.get("/transacao", loginRequired, transacaoController.index);
+router.post("/transacao/register", loginRequired, transacaoController.register);
 
 module.exports = router;
