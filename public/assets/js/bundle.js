@@ -88,6 +88,8 @@ var LoginCadastro = /*#__PURE__*/function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LetrasMaiuscula: () => (/* binding */ LetrasMaiuscula),
+/* harmony export */   exibirElementos: () => (/* binding */ exibirElementos),
 /* harmony export */   formatarData: () => (/* binding */ formatarData),
 /* harmony export */   formatarValor: () => (/* binding */ formatarValor)
 /* harmony export */ });
@@ -122,6 +124,16 @@ function formatarValor(valor) {
   // Adiciona o prefixo "R$" ao valor formatado
   return "R$ ".concat(valorFormatado);
 }
+function exibirElementos(selector, atributo, formatar) {
+  var elementos = document.querySelectorAll(selector);
+  elementos.forEach(function (el) {
+    var valor = el.getAttribute(atributo);
+    el.textContent = formatar(valor);
+  });
+}
+function LetrasMaiuscula(palavra) {
+  return palavra.toUpperCase();
+}
 
 /***/ }),
 
@@ -136,14 +148,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   associarForm: () => (/* binding */ associarForm),
 /* harmony export */   checkboxInput: () => (/* binding */ checkboxInput),
 /* harmony export */   emailInput: () => (/* binding */ emailInput),
-/* harmony export */   exibirDatas: () => (/* binding */ exibirDatas),
-/* harmony export */   exibirElementos: () => (/* binding */ exibirElementos),
-/* harmony export */   exibirTipos: () => (/* binding */ exibirTipos),
-/* harmony export */   exibirValores: () => (/* binding */ exibirValores),
+/* harmony export */   init: () => (/* binding */ init),
 /* harmony export */   inputInvalido: () => (/* binding */ inputInvalido),
 /* harmony export */   nameInput: () => (/* binding */ nameInput),
 /* harmony export */   removeMsg: () => (/* binding */ removeMsg),
-/* harmony export */   saudacaoHome: () => (/* binding */ saudacaoHome),
 /* harmony export */   senhaInput: () => (/* binding */ senhaInput)
 /* harmony export */ });
 /* harmony import */ var _dataHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataHandler */ "./frontend/modules/dataHandler.js");
@@ -155,6 +163,8 @@ function associarForm(form) {
   nameInput = form.querySelector('input[type="text"]');
   checkboxInput = form.querySelector('input[type="checkbox"]');
 }
+
+// caso o input tem valor invlaido, ele ficará vermelho e com uma menssagem
 function inputInvalido(input) {
   input.classList.add("is-invalid");
   msgErro(input);
@@ -162,6 +172,8 @@ function inputInvalido(input) {
     input.classList.remove("is-invalid");
   }, 2000);
 }
+
+// criar um texto informando o erro abaixo do input
 function msgErro(input) {
   var elPai = input.parentElement;
   var msg = document.createElement("div");
@@ -169,12 +181,16 @@ function msgErro(input) {
   if (input.type == "text") msg.textContent = "Nome invalido";else if (input.type == "email") msg.textContent = "Email invalido";else if (input.type == "password") msg.textContent = "Senha invalido";
   elPai.appendChild(msg);
 }
+
+// responsável por remover a menssagem de erro abaixo do input
 function removeMsg() {
   var msgs = document.querySelectorAll(".form-text");
   msgs.forEach(function (msg) {
     msg.remove();
   });
 }
+
+// breve saudação no frontend
 function saudacaoHome() {
   var h1 = document.querySelector(".h1-saudacao");
   if (!h1) return;
@@ -184,19 +200,19 @@ function saudacaoHome() {
   if (data.getHours() < 12) saudacao = "Bom dia";else if (data.getHours() < 18) saudacao = "Boa tarde";else if (data.getHours() < 24) saudacao = "Boa noite";else saudacao = "Boa madrugada";
   h1.textContent = "".concat(saudacao, " ").concat(nome);
 }
-function exibirElementos(selector, atributo, formato) {
-  var elementos = document.querySelectorAll(selector);
-  elementos.forEach(function (el) {
-    var valor = el.getAttribute(atributo);
-    el.textContent = formato(valor);
-  });
-}
+
+// resposável  por exibir dados formatados no frontend
 function exibirValores() {
-  exibirElementos(".valor", "_valor", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarValor);
+  _dataHandler__WEBPACK_IMPORTED_MODULE_0__.exibirElementos(".valor", "_valor", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarValor);
 }
 function exibirDatas() {
-  exibirElementos(".data", "_data", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarData);
+  _dataHandler__WEBPACK_IMPORTED_MODULE_0__.exibirElementos(".data", "_data", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarData);
 }
+function exibirCategorias() {
+  _dataHandler__WEBPACK_IMPORTED_MODULE_0__.exibirElementos(".categoria", "_categoria", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.LetrasMaiuscula);
+}
+
+// mostra o tipo decada lançamento com texto e imagem referente
 function exibirTipos() {
   var tipos = document.querySelectorAll(".tipo-lan");
   tipos.forEach(function (el) {
@@ -205,6 +221,15 @@ function exibirTipos() {
     var imagem = tipo === "entrada" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
     el.innerHTML = "".concat(descricao, " <img src=\"").concat(imagem, "\" alt=\"").concat(descricao, "\" />");
   });
+}
+
+// função resposável por chamar todas outras de exibição
+function init() {
+  saudacaoHome();
+  exibirDatas();
+  exibirValores();
+  exibirCategorias();
+  exibirTipos();
 }
 
 /***/ }),
@@ -8687,10 +8712,9 @@ var register = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"
 register.init();
 var login = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"](".formLogin");
 login.init();
-_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.saudacaoHome();
-_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirDatas();
-_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirValores();
-_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirTipos();
+
+// função resposável por chamar todas outras de exibição
+(0,_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.init)();
 })();
 
 /******/ })()

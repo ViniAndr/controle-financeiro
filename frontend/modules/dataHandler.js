@@ -28,3 +28,15 @@ export function formatarValor(valor) {
   // Adiciona o prefixo "R$" ao valor formatado
   return `R$ ${valorFormatado}`;
 }
+
+export function exibirElementos(selector, atributo, formatar) {
+  const elementos = document.querySelectorAll(selector);
+  elementos.forEach((el) => {
+    const valor = el.getAttribute(atributo);
+    el.textContent = formatar(valor);
+  });
+}
+
+export function LetrasMaiuscula(palavra) {
+  return palavra.toUpperCase();
+}

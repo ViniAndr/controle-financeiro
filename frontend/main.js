@@ -1,5 +1,5 @@
 import LoginCadastro from "./modules/LoginCadastro";
-import * as dom from "./modules/domManipulation";
+import { init } from "./modules/domManipulation";
 
 const register = new LoginCadastro(".formRegister");
 register.init();
@@ -7,7 +7,5 @@ register.init();
 const login = new LoginCadastro(".formLogin");
 login.init();
 
-dom.saudacaoHome();
-dom.exibirDatas();
-dom.exibirValores();
-dom.exibirTipos();
+// função resposável por chamar todas outras de exibição
+init();

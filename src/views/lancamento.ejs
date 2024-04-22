@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-6 offset-md-3 login-form">
-      <h1 class="text-center">Crei um novo lançameno</h1>
+      <h1 class="text-center">Crei um novo lançamento</h1>
       <p class="text-center leed">Preencha os campos abaixo com os seus gastos ou pagamentos:</p>
       <%- include("includes/message") %>
       <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
@@ -38,13 +38,14 @@
         </select>
         <!-- Forma -->
         <div class="form-check">
-          <input class="form-check-input" value="entrada" type="radio" name="tipoLancamento" checked />
-          <label class="form-check-label" for="flexRadioDefault1"> Entrada </label>
+          <input class="form-check-input" value="saida" type="radio" name="tipoLancamento" checked />
+          <label class="form-check-label" for="flexRadioDefault1"> Despesa </label>
         </div>
         <div class="form-check mb-3">
-          <input class="form-check-input" value="saida" type="radio" name="tipoLancamento" />
-          <label class="form-check-label" for="flexRadioDefault2"> Saída </label>
+          <input class="form-check-input" value="entrada" type="radio" name="tipoLancamento" />
+          <label class="form-check-label" for="flexRadioDefault2"> Pagamento </label>
         </div>
+        <!-- Botão -->
         <button class="w-100 btn btn-lg btn-primary" type="submit">Adicionar</button>
       </form>
     </div>

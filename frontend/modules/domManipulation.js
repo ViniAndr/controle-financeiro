@@ -1,4 +1,4 @@
-import { formatarValor, formatarData } from "./dataHandler";
+import * as handler from "./dataHandler";
 export let emailInput, senhaInput, nameInput, checkboxInput;
 
 export function associarForm(form) {
@@ -8,6 +8,7 @@ export function associarForm(form) {
   checkboxInput = form.querySelector('input[type="checkbox"]');
 }
 
+// caso o input tem valor invlaido, ele ficará vermelho e com uma menssagem
 export function inputInvalido(input) {
   input.classList.add("is-invalid");
   msgErro(input);
@@ -16,6 +17,7 @@ export function inputInvalido(input) {
   }, 2000);
 }
 
+// criar um texto informando o erro abaixo do input
 function msgErro(input) {
   const elPai = input.parentElement;
   const msg = document.createElement("div");
@@ -28,6 +30,7 @@ function msgErro(input) {
   elPai.appendChild(msg);
 }
 
+// responsável por remover a menssagem de erro abaixo do input
 export function removeMsg() {
   const msgs = document.querySelectorAll(".form-text");
   msgs.forEach((msg) => {
@@ -35,7 +38,8 @@ export function removeMsg() {
   });
 }
 
-export function saudacaoHome() {
+// breve saudação no frontend
+function saudacaoHome() {
   const h1 = document.querySelector(".h1-saudacao");
   if (!h1) return;
   const nome = h1.getAttribute("_nome");
@@ -50,23 +54,21 @@ export function saudacaoHome() {
   h1.textContent = `${saudacao} ${nome}`;
 }
 
-export function exibirElementos(selector, atributo, formato) {
-  const elementos = document.querySelectorAll(selector);
-  elementos.forEach((el) => {
-    const valor = el.getAttribute(atributo);
-    el.textContent = formato(valor);
-  });
+// resposável  por exibir dados formatados no frontend
+function exibirValores() {
+  handler.exibirElementos(".valor", "_valor", handler.formatarValor);
 }
 
-export function exibirValores() {
-  exibirElementos(".valor", "_valor", formatarValor);
+function exibirDatas() {
+  handler.exibirElementos(".data", "_data", handler.formatarData);
 }
 
-export function exibirDatas() {
-  exibirElementos(".data", "_data", formatarData);
+function exibirCategorias() {
+  handler.exibirElementos(".categoria", "_categoria", handler.LetrasMaiuscula);
 }
 
-export function exibirTipos() {
+// mostra o tipo decada lançamento com texto e imagem referente
+function exibirTipos() {
   const tipos = document.querySelectorAll(".tipo-lan");
   tipos.forEach((el) => {
     const tipo = el.getAttribute("_tipoLan");
@@ -75,4 +77,13 @@ export function exibirTipos() {
 
     el.innerHTML = `${descricao} <img src="${imagem}" alt="${descricao}" />`;
   });
+}
+
+// função resposável por chamar todas outras de exibição
+export function init() {
+  saudacaoHome();
+  exibirDatas();
+  exibirValores();
+  exibirCategorias();
+  exibirTipos();
 }

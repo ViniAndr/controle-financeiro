@@ -13,6 +13,7 @@ function Transacao(body) {
   this.body = body;
   this.errors = [];
 }
+// função responsável por fazer o registro
 Transacao.prototype.register = async function () {
   this.validar();
   if (this.errors.length > 0) return;
@@ -22,6 +23,7 @@ Transacao.prototype.register = async function () {
   await TransacaoModel.create(this.body);
 };
 
+// responsável por fazer a validação do lado do servidor
 Transacao.prototype.validar = function () {
   const dataNow = new Date();
 
@@ -44,6 +46,7 @@ Transacao.prototype.validar = function () {
   }
 };
 
+// responsável por fazer a formatação dos valores antes do envio
 Transacao.prototype.fomatarValor = function () {
   // Verifica se o campo 'valor' existe e é uma string
   if (typeof this.body.valor === "string") {
