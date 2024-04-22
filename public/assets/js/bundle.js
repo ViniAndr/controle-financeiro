@@ -80,6 +80,51 @@ var LoginCadastro = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./frontend/modules/dataHandler.js":
+/*!*****************************************!*\
+  !*** ./frontend/modules/dataHandler.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   formatarData: () => (/* binding */ formatarData),
+/* harmony export */   formatarValor: () => (/* binding */ formatarValor)
+/* harmony export */ });
+function formatarData(dataDb) {
+  var timeZone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "UTC";
+  var data = new Date(dataDb);
+  data.setTime(data.getTime() + data.getTimezoneOffset() * 60 * 1000); // Ajuste para o fuso horário local
+  var dia = data.getDate();
+  var mes = data.getMonth() + 1; // Os meses começam em zero, por isso é necessário adicionar +1
+  var ano = data.getFullYear();
+
+  // Função para adicionar um zero à esquerda se o valor for menor que 10
+  var adicionarZeroEsquerda = function adicionarZeroEsquerda(valor) {
+    return valor < 10 ? "0".concat(valor) : valor;
+  };
+
+  // Formatação da data no formato "dd/mm/aaaa"
+  var dataFormatada = "".concat(adicionarZeroEsquerda(dia), "/").concat(adicionarZeroEsquerda(mes), "/").concat(ano);
+  return dataFormatada;
+}
+function formatarValor(valor) {
+  var valorFloat = 0;
+
+  // Verifica se o valor é uma string numérica ou um número
+  if (typeof valor === "string" || typeof valor === "number") {
+    valorFloat = parseFloat(valor);
+  }
+
+  // Formata o valor com duas casas decimais
+  var valorFormatado = valorFloat.toFixed(2);
+
+  // Adiciona o prefixo "R$" ao valor formatado
+  return "R$ ".concat(valorFormatado);
+}
+
+/***/ }),
+
 /***/ "./frontend/modules/domManipulation.js":
 /*!*********************************************!*\
   !*** ./frontend/modules/domManipulation.js ***!
@@ -91,13 +136,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   associarForm: () => (/* binding */ associarForm),
 /* harmony export */   checkboxInput: () => (/* binding */ checkboxInput),
 /* harmony export */   emailInput: () => (/* binding */ emailInput),
+/* harmony export */   exibirDatas: () => (/* binding */ exibirDatas),
+/* harmony export */   exibirElementos: () => (/* binding */ exibirElementos),
+/* harmony export */   exibirTipos: () => (/* binding */ exibirTipos),
+/* harmony export */   exibirValores: () => (/* binding */ exibirValores),
 /* harmony export */   inputInvalido: () => (/* binding */ inputInvalido),
 /* harmony export */   nameInput: () => (/* binding */ nameInput),
 /* harmony export */   removeMsg: () => (/* binding */ removeMsg),
 /* harmony export */   saudacaoHome: () => (/* binding */ saudacaoHome),
 /* harmony export */   senhaInput: () => (/* binding */ senhaInput)
 /* harmony export */ });
-//is-invalid
+/* harmony import */ var _dataHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataHandler */ "./frontend/modules/dataHandler.js");
+
 var emailInput, senhaInput, nameInput, checkboxInput;
 function associarForm(form) {
   emailInput = form.querySelector('input[type="email"]');
@@ -128,9 +178,33 @@ function removeMsg() {
 function saudacaoHome() {
   var h1 = document.querySelector(".h1-saudacao");
   if (!h1) return;
-  var nome = h1.getAttribute("nomePessoa");
+  var nome = h1.getAttribute("_nome");
   var data = new Date();
-  if (data.getHours() >= 6 && data.getHours() < 12) h1.textContent = "Bom dia ".concat(nome);else if (data.getHours() >= 12 && data.getHours() < 18) h1.textContent = "Boa tarde ".concat(nome);else if (data.getHours() >= 18 && data.getHours() < 24) h1.textContent = "Boa noite ".concat(nome);else h1.textContent = "Boa madrugada ".concat(nome);
+  var saudacao;
+  if (data.getHours() < 12) saudacao = "Bom dia";else if (data.getHours() < 18) saudacao = "Boa tarde";else if (data.getHours() < 24) saudacao = "Boa noite";else saudacao = "Boa madrugada";
+  h1.textContent = "".concat(saudacao, " ").concat(nome);
+}
+function exibirElementos(selector, atributo, formato) {
+  var elementos = document.querySelectorAll(selector);
+  elementos.forEach(function (el) {
+    var valor = el.getAttribute(atributo);
+    el.textContent = formato(valor);
+  });
+}
+function exibirValores() {
+  exibirElementos(".valor", "_valor", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarValor);
+}
+function exibirDatas() {
+  exibirElementos(".data", "_data", _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarData);
+}
+function exibirTipos() {
+  var tipos = document.querySelectorAll(".tipo-lan");
+  tipos.forEach(function (el) {
+    var tipo = el.getAttribute("_tipoLan");
+    var descricao = tipo === "entrada" ? "Pagamento" : "Despesa";
+    var imagem = tipo === "entrada" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
+    el.innerHTML = "".concat(descricao, " <img src=\"").concat(imagem, "\" alt=\"").concat(descricao, "\" />");
+  });
 }
 
 /***/ }),
@@ -8613,7 +8687,10 @@ var register = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"
 register.init();
 var login = new _modules_LoginCadastro__WEBPACK_IMPORTED_MODULE_0__["default"](".formLogin");
 login.init();
-(0,_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.saudacaoHome)();
+_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.saudacaoHome();
+_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirDatas();
+_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirValores();
+_modules_domManipulation__WEBPACK_IMPORTED_MODULE_1__.exibirTipos();
 })();
 
 /******/ })()

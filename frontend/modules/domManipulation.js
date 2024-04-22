@@ -1,4 +1,4 @@
-//is-invalid
+import { formatarValor, formatarData } from "./dataHandler";
 export let emailInput, senhaInput, nameInput, checkboxInput;
 
 export function associarForm(form) {
@@ -38,11 +38,41 @@ export function removeMsg() {
 export function saudacaoHome() {
   const h1 = document.querySelector(".h1-saudacao");
   if (!h1) return;
-  const nome = h1.getAttribute("nomePessoa");
+  const nome = h1.getAttribute("_nome");
   const data = new Date();
 
-  if (data.getHours() >= 6 && data.getHours() < 12) h1.textContent = `Bom dia ${nome}`;
-  else if (data.getHours() >= 12 && data.getHours() < 18) h1.textContent = `Boa tarde ${nome}`;
-  else if (data.getHours() >= 18 && data.getHours() < 24) h1.textContent = `Boa noite ${nome}`;
-  else h1.textContent = `Boa madrugada ${nome}`;
+  let saudacao;
+  if (data.getHours() < 12) saudacao = "Bom dia";
+  else if (data.getHours() < 18) saudacao = "Boa tarde";
+  else if (data.getHours() < 24) saudacao = "Boa noite";
+  else saudacao = "Boa madrugada";
+
+  h1.textContent = `${saudacao} ${nome}`;
+}
+
+export function exibirElementos(selector, atributo, formato) {
+  const elementos = document.querySelectorAll(selector);
+  elementos.forEach((el) => {
+    const valor = el.getAttribute(atributo);
+    el.textContent = formato(valor);
+  });
+}
+
+export function exibirValores() {
+  exibirElementos(".valor", "_valor", formatarValor);
+}
+
+export function exibirDatas() {
+  exibirElementos(".data", "_data", formatarData);
+}
+
+export function exibirTipos() {
+  const tipos = document.querySelectorAll(".tipo-lan");
+  tipos.forEach((el) => {
+    const tipo = el.getAttribute("_tipoLan");
+    const descricao = tipo === "entrada" ? "Pagamento" : "Despesa";
+    const imagem = tipo === "entrada" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
+
+    el.innerHTML = `${descricao} <img src="${imagem}" alt="${descricao}" />`;
+  });
 }

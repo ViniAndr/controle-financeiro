@@ -1,25 +1,25 @@
-const TransacaoModel = require("../model/TransacaoModel");
+const Transacao = require("../model/TransacaoModel");
 exports.index = (req, res) => {
   res.render("lancamento");
 };
 
 exports.register = async (req, res) => {
   try {
-    const transacaoModel = new TransacaoModel(req.body);
     console.log(req.body);
-    await transacaoModel.validar();
+    const transacao = new Transacao(req.body);
+    await transacao.register();
 
-    if (transacaoModel.errors.length > 0) {
-      req.flash("errors", transacaoModel.errors);
+    if (transacao.errors.length > 0) {
+      req.flash("errors", transacao.errors);
       req.session.save(() => {
         return res.redirect("/transacao");
       });
       return;
     }
 
-    req.flash("success", "Login feito com sucesso");
+    req.flash("success", "Transação adicionada com sucesso");
     req.session.save(() => {
-      return res.redirect("/");
+      return res.redirect("/transacao");
     });
   } catch (e) {
     console.log("Erro ao registar", e);
