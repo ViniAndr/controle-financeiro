@@ -8,41 +8,48 @@
       <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
         <!-- Valor -->
         <div class="form-floating mb-3">
-          <input type="number" class="form-control" name="valor" />
+          <input type="number" class="form-control" name="valor" value="<%= lancamento.valor ?? '' %>" />
           <label for="floatingInput">Valor (R$)</label>
         </div>
         <!-- Data -->
         <div class="form-floating mb-3">
-          <input type="date" class="form-control" name="data" />
+          <input
+            value="<%= lancamento.data && lancamento.data.toISOString().split('T')[0] %>"
+            type="date"
+            class="form-control"
+            name="data"
+          />
           <label for="floatingInput">Data</label>
         </div>
         <!-- Categoria -->
         <select class="form-select pb-3 pt-3 mb-3" name="categoria">
-          <option selected>Categorias</option>
-          <option value="alimentacao">Alimentação</option>
-          <option value="comida">Comida</option>
-          <option value="contas">Contas</option>
-          <option value="curso">Curso</option>
-          <option value="educacao">Educação</option>
-          <option value="escola">Escola</option>
-          <option value="faculdade">Faculdade</option>
-          <option value="jogos">Jogos</option>
-          <option value="lazer">Lazer</option>
-          <option value="moradia">Moradia</option>
-          <option value="outros">Outros</option>
-          <option value="presentes">Presentes</option>
-          <option value="quarto">Quarto</option>
-          <option value="saude">Saúde</option>
-          <option value="tecnologia">Tecnologia</option>
-          <option value="transporte">Transporte</option>
+          <option>Categorias</option>
+          <option value="alimentacao" <%= lancamento.categoria === "alimentacao" ? 'selected' : '' %>>Alimentação</option>
+          <option value="comida" <%= lancamento.categoria === "comida" ? 'selected' : '' %>>Comida</option>
+          <option value="contas" <%= lancamento.categoria === "contas" ? 'selected' : '' %>>Contas</option>
+          <option value="curso" <%= lancamento.categoria === "curso" ? 'selected' : '' %>>Curso</option>
+          <option value="educacao" <%= lancamento.categoria === "educacao" ? 'selected' : '' %>>Educação</option>
+          <option value="escola" <%= lancamento.categoria === "escola" ? 'selected' : '' %>>Escola</option>
+          <option value="faculdade" <%= lancamento.categoria === "faculdade" ? 'selected' : '' %>>Faculdade</option>
+          <option value="jogos" <%= lancamento.categoria === "jogos" ? 'selected' : '' %>>Jogos</option>
+          <option value="lazer" <%= lancamento.categoria === "lazer" ? 'selected' : '' %>>Lazer</option>
+          <option value="moradia" <%= lancamento.categoria === "moradia" ? 'selected' : '' %>>Moradia</option>
+          <option value="outros" <%= lancamento.categoria === "outros" ? 'selected' : '' %>>Outros</option>
+          <option value="presentes" <%= lancamento.categoria === "presentes" ? 'selected' : '' %>>Presentes</option>
+          <option value="quarto" <%= lancamento.categoria === "quarto" ? 'selected' : '' %>>Quarto</option>
+          <option value="saude" <%= lancamento.categoria === "saude" ? 'selected' : '' %>>Saúde</option>
+          <option value="tecnologia" <%= lancamento.categoria === "tecnologia" ? 'selected' : '' %>>Tecnologia</option>
+          <option value="transporte" <%= lancamento.categoria === "transporte" ? 'selected' : '' %>>Transporte</option>
         </select>
         <!-- Forma -->
         <div class="form-check">
-          <input class="form-check-input" value="saida" type="radio" name="tipoLancamento" checked />
+          <input class="form-check-input" value="despesa" type="radio" name="tipoLancamento" <%=
+          lancamento.tipoLancamento === "despesa" ? 'checked' : '' %> />
           <label class="form-check-label" for="flexRadioDefault1"> Despesa </label>
         </div>
         <div class="form-check mb-3">
-          <input class="form-check-input" value="entrada" type="radio" name="tipoLancamento" />
+          <input class="form-check-input" value="pagamento" type="radio" name="tipoLancamento" <%=
+          lancamento.tipoLancamento === "pagamento" ? 'checked' : '' %>/>
           <label class="form-check-label" for="flexRadioDefault2"> Pagamento </label>
         </div>
         <!-- Botão -->

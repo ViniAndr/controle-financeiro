@@ -20,5 +20,6 @@ router.get("/logout", loginController.logout);
 //cadastro
 router.get("/transacao", loginRequired, transacaoController.index);
 router.post("/transacao/register", loginRequired, transacaoController.register);
+router.get("/transacao/index/:id", loginRequired, transacaoController.edtTransacao);
 
 module.exports = router;

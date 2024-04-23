@@ -4,7 +4,7 @@ const transacaoSchema = mongoose.Schema({
   valor: { type: Number, require: true },
   data: { type: Date, default: Date.now, require: true },
   categoria: { type: String, require: true },
-  tipoLancamento: { type: String, enum: ["entrada", "saida"], require: true },
+  tipoLancamento: { type: String, enum: ["pagamento", "despesa"], require: true },
 });
 
 const TransacaoModel = mongoose.model("Transacao", transacaoSchema);
@@ -62,6 +62,12 @@ Transacao.prototype.fomatarValor = function () {
 Transacao.buscarTransicoes = async function () {
   const transacoes = await TransacaoModel.find();
   return transacoes;
+};
+
+Transacao.buscarPorId = async function (id) {
+  if (typeof id !== "string") return;
+  const transacao = await TransacaoModel.findById(id);
+  return transacao;
 };
 
 module.exports = Transacao;
