@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
       return res.redirect("/");
     });
   } catch (e) {
-    console.log("Erro ao registar", e);
+    console.log("Erro ao registar", e.message);
     res.render("404");
   }
 };

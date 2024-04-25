@@ -44,6 +44,10 @@ Transacao.prototype.validar = function () {
   if (this.body.categoria == "Categorias") {
     this.errors.push("Informe uma categoria valida");
   }
+  // verfica se algum dos tipos de lançamento está marcado.
+  if (!this.body.tipoLancamento) {
+    this.errors.push("Selecione se é Pagamento ou Despesa");
+  }
 };
 
 // responsável por fazer a formatação dos valores antes do envio

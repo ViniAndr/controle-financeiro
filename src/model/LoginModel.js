@@ -18,82 +18,77 @@ class Login {
   }
 
   async register() {
-    this.validaCadastro();
-    if (this.errors.length > 0) return;
+    try {
+      this.validateCadastro();
 
-    // verifica se usuário já existe pelo email
-    await LoginModel.findOne({ email: this.body.email }).then((usuario) => {
-      if (usuario) this.errors.push("Email já usado");
-    });
-    if (this.errors.length > 0) return;
+      // verifica se usuário já existe pelo email
+      const usuario = await LoginModel.findOne({ email: this.body.email });
+      if (usuario) {
+        throw new Error("Email já usado"); // Lançando erro para tratamento
+      }
 
-    // bcryptjs
-    const salt = bcrypt.genSaltSync();
-    this.body.password = bcrypt.hashSync(this.body.password, salt);
+      // bcryptjs
+      const salt = bcrypt.genSaltSync();
+      this.body.password = bcrypt.hashSync(this.body.password, salt);
 
-    // criar usuário
-    this.user = await LoginModel.create(this.body);
+      // criar usuário
+      this.user = await LoginModel.create(this.body);
+    } catch (error) {
+      this.errors.push(error.message);
+    }
   }
 
-  validaCadastro() {
-    this.clearUp();
-    if (!this.body.nome) {
-      this.errors.push("Nome é obrigatorio");
+  validateCadastro() {
+    this.body.nome = this.body.nome.trim();
+    // valida nome
+    if (!/^[\p{L}\s]+$/u.test(this.body.nome) || this.body.nome.length < 2) {
+      this.errors.push("Nome de usuário é invalido");
     }
-    if (!validator.isEmail(this.body.email)) {
-      this.errors.push("Email invalido!");
-    }
-    if (this.body.password.length < 8 || this.body.password.length > 35) {
-      this.errors.push("A senha precisa ter entre 8 e 35 caracteres.");
-    }
+
+    this.validarEmail();
+    this.validarSenha();
   }
 
   async login() {
-    this.validaLogin();
-    if (this.errors.length > 0) return;
+    try {
+      this.validateLogin();
 
-    // busca o usuario, verifica se existe e salva em this.user
-    await LoginModel.findOne({ email: this.body.email }).then((usuario) => {
+      // busca o usuario, verifica se existe e salva em this.user
+      const usuario = await LoginModel.findOne({ email: this.body.email });
       if (!usuario) {
-        this.errors.push("Login invalido");
-        return;
+        throw new Error("Login invalido"); // Lançando erro para tratamento
       }
       this.user = usuario;
-    });
 
-    //busquei os dados pelo email, Agora devo comparar as senhas
+      //busquei os dados pelo email, Agora devo comparar as senhas
 
-    // senha bate?
-    if (!bcrypt.compareSync(this.body.password, this.user.password)) {
-      this.errors.push("Senha inválida.");
-      // reset de usuario
-      this.user = null;
-      return;
+      // senha bate?
+      if (!bcrypt.compareSync(this.body.password, usuario.password)) {
+        throw new Error("Senha inválida."); // Lançando erro para tratamento
+      }
+    } catch (error) {
+      this.errors.push(error.message);
+      this.user = null; // Resetando o usuário em caso de erro
     }
   }
 
-  validaLogin() {
-    this.clearUp();
+  validateLogin() {
+    this.validarEmail();
+    this.validarSenha();
+  }
+
+  validarEmail() {
+    this.body.email = this.body.email.trim();
     if (!validator.isEmail(this.body.email)) {
       this.errors.push("Email invalido!");
     }
-    if (this.body.password.length < 8 || this.body.password.length > 35) {
-      this.errors.push("A senha precisa ter entre 8 e 35 caracteres.");
-    }
   }
 
-  clearUp() {
-    for (const key in this.body) {
-      if (typeof this.body[key] !== "string") {
-        this.body[key] = "";
-      }
+  validarSenha() {
+    this.body.password = this.body.password.trim();
+    if (!/^[a-zA-Z0-9]+$/.test(this.body.password) || this.body.password.length < 8 || this.body.passwordlength > 35) {
+      this.errors.push("A senha precisa ter entre 8 e 35 caracteres válidos.");
     }
-
-    this.body = {
-      nome: this.body.nome,
-      email: this.body.email,
-      password: this.body.password,
-    };
   }
 }
 

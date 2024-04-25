@@ -43,14 +43,14 @@
         </select>
         <!-- Forma -->
         <div class="form-check">
-          <input class="form-check-input" value="despesa" type="radio" name="tipoLancamento" <%=
+          <input class="form-check-input" id="rdDespesa"  value="despesa" type="radio" name="tipoLancamento" <%=
           lancamento.tipoLancamento === "despesa" ? 'checked' : '' %> />
-          <label class="form-check-label" for="flexRadioDefault1"> Despesa </label>
+          <label class="form-check-label" for="rdDespesa"> Despesa </label>
         </div>
         <div class="form-check mb-3">
-          <input class="form-check-input" value="pagamento" type="radio" name="tipoLancamento" <%=
+          <input class="form-check-input" id="rdPagamento" value="pagamento" type="radio" name="tipoLancamento" <%=
           lancamento.tipoLancamento === "pagamento" ? 'checked' : '' %>/>
-          <label class="form-check-label" for="flexRadioDefault2"> Pagamento </label>
+          <label class="form-check-label" for="rdPagamento"> Pagamento </label>
         </div>
         <!-- Botão -->
         <button class="w-100 btn btn-lg btn-primary" type="submit">Adicionar</button>

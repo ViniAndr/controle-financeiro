@@ -11,21 +11,18 @@ export function associarForm(form) {
 // caso o input tem valor invlaido, ele ficará vermelho e com uma menssagem
 export function inputInvalido(input) {
   input.classList.add("is-invalid");
-  msgErro(input);
   setTimeout(() => {
     input.classList.remove("is-invalid");
   }, 2000);
 }
 
 // criar um texto informando o erro abaixo do input
-function msgErro(input) {
+export function mostrarMensagemErro(input, mensagem) {
   const elPai = input.parentElement;
   const msg = document.createElement("div");
   msg.className = "form-text text-danger";
 
-  if (input.type == "text") msg.textContent = "Nome invalido";
-  else if (input.type == "email") msg.textContent = "Email invalido";
-  else if (input.type == "password") msg.textContent = "Senha invalido";
+  msg.textContent = mensagem;
 
   elPai.appendChild(msg);
 }
