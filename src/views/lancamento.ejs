@@ -5,7 +5,11 @@
       <h1 class="text-center">Crei um novo lançamento</h1>
       <p class="text-center leed">Preencha os campos abaixo com os seus gastos ou pagamentos:</p>
       <%- include("includes/message") %>
-      <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
+      <% if(lancamento._id){ %>
+        <form action="/transacao/edt/<%= lancamento._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
+          <% } else { %>
+            <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
+        <% } %>
         <!-- Valor -->
         <div class="form-floating mb-3">
           <input type="number" class="form-control" name="valor" value="<%= lancamento.valor ?? '' %>" />

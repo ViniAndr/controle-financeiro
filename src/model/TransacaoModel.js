@@ -12,6 +12,7 @@ const TransacaoModel = mongoose.model("Transacao", transacaoSchema);
 function Transacao(body) {
   this.body = body;
   this.errors = [];
+  this.transacao = null;
 }
 // função responsável por fazer o registro
 Transacao.prototype.register = async function () {
@@ -48,6 +49,22 @@ Transacao.prototype.validar = function () {
   if (!this.body.tipoLancamento) {
     this.errors.push("Selecione se é Pagamento ou Despesa");
   }
+};
+
+// foi protoipado para usar o método valida()
+Transacao.prototype.edit = async function (id) {
+  // se não tiver o id
+  if (typeof id !== "string") return;
+  // se não for validado
+  this.validar();
+  // se tiver erro
+  if (this.errors.length > 0) return;
+
+  // atualiza o contato
+  this.transacao = await TransacaoModel.findByIdAndUpdate(id, this.body, {
+    // retorna o novo contato,  e não os dados antigos
+    new: true,
+  });
 };
 
 // responsável por fazer a formatação dos valores antes do envio

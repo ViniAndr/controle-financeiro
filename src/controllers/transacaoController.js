@@ -31,12 +31,34 @@ exports.register = async (req, res) => {
 exports.edtTransacao = async (req, res) => {
   try {
     if (!req.params.id) return res.render("404");
-    console.log(typeof req.params.id, req.params.id);
 
     const lancamento = await Transacao.buscarPorId(req.params.id);
     if (!lancamento) return res.render("404");
 
     res.render("lancamento", { lancamento });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.editar = async (req, res) => {
+  try {
+    if (!req.params.id) return res.render("404");
+    const transacao = new Transacao(req.body);
+    transacao.edit(req.params.id);
+
+    if (transacao.errors.length > 0) {
+      req.flash("errors", transacao.errors);
+      req.session.save(() => {
+        return res.redirect("/transacao");
+      });
+      return;
+    }
+
+    req.flash("success", "Transação editada com sucesso");
+    req.session.save(() => {
+      return res.redirect("/transacao");
+    });
   } catch (error) {
     console.log(error);
   }
