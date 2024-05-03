@@ -232,8 +232,8 @@ function exibirTipos() {
   var tipos = document.querySelectorAll(".tipo-lan");
   tipos.forEach(function (el) {
     var tipo = el.getAttribute("_tipoLan");
-    var descricao = tipo === "entrada" ? "Pagamento" : "Despesa";
-    var imagem = tipo === "entrada" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
+    var descricao = _dataHandler__WEBPACK_IMPORTED_MODULE_0__.LetrasMaiuscula(tipo);
+    var imagem = tipo === "pagamento" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
     el.innerHTML = "".concat(descricao, " <img src=\"").concat(imagem, "\" alt=\"").concat(descricao, "\" />");
   });
 }

@@ -69,8 +69,8 @@ function exibirTipos() {
   const tipos = document.querySelectorAll(".tipo-lan");
   tipos.forEach((el) => {
     const tipo = el.getAttribute("_tipoLan");
-    const descricao = tipo === "entrada" ? "Pagamento" : "Despesa";
-    const imagem = tipo === "entrada" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
+    const descricao = handler.LetrasMaiuscula(tipo);
+    const imagem = tipo === "pagamento" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
 
     el.innerHTML = `${descricao} <img src="${imagem}" alt="${descricao}" />`;
   });
