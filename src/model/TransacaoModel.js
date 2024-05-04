@@ -91,4 +91,10 @@ Transacao.buscarPorId = async function (id) {
   return transacao;
 };
 
+Transacao.delete = async function (id) {
+  if (typeof id !== "string") return;
+  const transacao = await TransacaoModel.findOneAndDelete({ _id: id });
+  return transacao;
+};
+
 module.exports = Transacao;

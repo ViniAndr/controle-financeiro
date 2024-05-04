@@ -17,7 +17,7 @@
           <td class="tipo-lan" _tipoLan="<%= transicao.tipoLancamento %>"></td>
           <td>
             <a href="/transacao/index/<%= transicao._id %>" class="">Editar</a>
-            <a href="" class="text-danger">Deletar</a>
+            <a href="/transacao/delete/<%= transicao._id %>" class="text-danger">Deletar</a>
           </td>
         </tr>
         <% }); %>

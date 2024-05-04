@@ -22,5 +22,6 @@ router.get("/transacao", loginRequired, transacaoController.index);
 router.post("/transacao/register", loginRequired, transacaoController.register);
 router.get("/transacao/index/:id", loginRequired, transacaoController.edtTransacao);
 router.post("/transacao/edt/:id", loginRequired, transacaoController.editar);
+router.get("/transacao/delete/:id", loginRequired, transacaoController.delete);
 
 module.exports = router;

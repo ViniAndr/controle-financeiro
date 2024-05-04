@@ -38,6 +38,7 @@ exports.edtTransacao = async (req, res) => {
     res.render("lancamento", { lancamento });
   } catch (error) {
     console.log(error);
+    res.render("404");
   }
 };
 
@@ -58,6 +59,23 @@ exports.editar = async (req, res) => {
     req.flash("success", "Transação editada com sucesso");
     req.session.save(() => {
       return res.redirect("/transacao");
+    });
+  } catch (error) {
+    console.log(error);
+    res.render("404");
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    if (!req.params.id) return res.render("404");
+
+    const transacao = await Transacao.delete(req.params.id);
+    if (!transacao) return res.render("404");
+
+    req.flash("success", "Transação deletada com sucesso");
+    req.session.save(() => {
+      return res.redirect("/");
     });
   } catch (error) {
     console.log(error);
