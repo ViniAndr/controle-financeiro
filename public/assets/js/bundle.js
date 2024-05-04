@@ -55,21 +55,20 @@ var LoginCadastro = /*#__PURE__*/function () {
       if (_domManipulation__WEBPACK_IMPORTED_MODULE_0__.nameInput) {
         error = this.validarNome();
       }
-      console.log("nome - ", error);
+
       // Verifica se email é valido
       if (!validator.isEmail(email)) {
         error = true;
         _domManipulation__WEBPACK_IMPORTED_MODULE_0__.inputInvalido(_domManipulation__WEBPACK_IMPORTED_MODULE_0__.emailInput);
         _domManipulation__WEBPACK_IMPORTED_MODULE_0__.mostrarMensagemErro(_domManipulation__WEBPACK_IMPORTED_MODULE_0__.emailInput, "Email inválido.");
       }
-      console.log("email - ", error);
+
       // senha é validada para ter o ranger esperado e não conter espaços em branco
       if (senha.length < 8 || senha.length > 35 || !/^[a-zA-Z0-9]+$/.test(senha)) {
         error = true;
         _domManipulation__WEBPACK_IMPORTED_MODULE_0__.inputInvalido(_domManipulation__WEBPACK_IMPORTED_MODULE_0__.senhaInput);
         _domManipulation__WEBPACK_IMPORTED_MODULE_0__.mostrarMensagemErro(_domManipulation__WEBPACK_IMPORTED_MODULE_0__.senhaInput, "Senha deve ter entre 8 e 35 caracteres válidos.");
       }
-      console.log("senha - ", error);
       if (!error) el.submit();
     }
   }, {
@@ -106,6 +105,7 @@ var LoginCadastro = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   LetrasMaiuscula: () => (/* binding */ LetrasMaiuscula),
+/* harmony export */   calcularValores: () => (/* binding */ calcularValores),
 /* harmony export */   exibirElementos: () => (/* binding */ exibirElementos),
 /* harmony export */   formatarData: () => (/* binding */ formatarData),
 /* harmony export */   formatarValor: () => (/* binding */ formatarValor)
@@ -150,6 +150,28 @@ function exibirElementos(selector, atributo, formatar) {
 }
 function LetrasMaiuscula(palavra) {
   return palavra.toUpperCase();
+}
+function calcularValores(seletorValor, seletorTipo) {
+  // Array para armazenar os valores de pagamento, despesa e balanço
+  var valores = [0, 0, 0];
+  seletorValor.forEach(function (valor, i) {
+    // Obtém o tipo de lançamento do elemento pela posição do valor
+    var tipo = seletorTipo[i].getAttribute("_tipoLan");
+
+    // Obtém o valor do elemento sem o R$ e converte para número
+    var num = Number(valor.textContent.split(" ").pop());
+
+    // Adiciona o valor ao tipo de lançamento correspondente
+    if (tipo == "pagamento") {
+      valores[0] += num;
+    } else {
+      valores[1] += num;
+    }
+  });
+
+  // Calcula o balanço subtraindo o valor de pagamentos do valor de despesas
+  valores[2] = valores[0] - valores[1];
+  return valores;
 }
 
 /***/ }),
@@ -247,6 +269,20 @@ function init() {
   exibirValores();
   exibirCategorias();
   exibirTipos();
+  valorCards();
+}
+function valorCards() {
+  var valores = document.querySelectorAll(".valor");
+  var tipoLan = document.querySelectorAll(".tipo-lan");
+
+  // recebo em array os valores calculados
+  var valoresCalculados = _dataHandler__WEBPACK_IMPORTED_MODULE_0__.calcularValores(valores, tipoLan);
+
+  // pego todos os cards e coloco o valor formatado
+  var cardsEl = document.querySelectorAll(".card-valores");
+  cardsEl.forEach(function (card, i) {
+    card.textContent = _dataHandler__WEBPACK_IMPORTED_MODULE_0__.formatarValor(valoresCalculados[i]);
+  });
 }
 
 /***/ }),

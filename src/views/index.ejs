@@ -1,14 +1,45 @@
 <%- include("includes/head") %> <%- include("includes/nav") %>
 
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-  <div class="row align-items-center g-lg-5 py-5">
+  <div class="row align-items-center g-lg-4 py-5">
     <%- include("includes/message") %> <% if(user){ %>
+    <!-- Div de informações basicas -->
     <div>
       <h1 class="display-4 fw-bold h1-saudacao" _nome="<%= user.nome %>"></h1>
-      <p class="leed">Suas despesas estão listada abaixo:</p>
+      <p class="leed mb-0">Suas despesas estão listada abaixo:</p>
     </div>
+    <!-- Grupo de divs(Cards) -->
+    <div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Valor Pago</h5>
+              <p class="card-text card-valores">R$ 100,00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Valor Gasto</h5>
+              <p class="card-text card-valores">R$ 50,00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Balanço</h5>
+              <p class="card-text card-valores">R$ 50,00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Tabela de transações -->
     <div class="resposive-table">
-      <table class="table my-3">
+      <table class="table">
         <% transacoes.forEach((transicao)=>{ %>
         <tr>
           <td class="data" _data="<%= transicao.data %>"></td>
@@ -23,6 +54,8 @@
         <% }); %>
       </table>
     </div>
+
+    <!-- Tela de não logado -->
     <% } else { %>
     <div class="col-lg-7 text-center text-lg-start">
       <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Junte-se a nós para simplificar seus gastos</h1>
@@ -31,6 +64,8 @@
         inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
       </p>
     </div>
+
+    <!-- Formulario de cadastro -->
     <div class="col-md-10 mx-auto col-lg-5">
       <form action="/login/register" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary formRegister">
         <div class="form-floating mb-3">

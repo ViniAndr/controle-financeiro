@@ -83,4 +83,18 @@ export function init() {
   exibirValores();
   exibirCategorias();
   exibirTipos();
+  valorCards();
+}
+function valorCards() {
+  const valores = document.querySelectorAll(".valor");
+  const tipoLan = document.querySelectorAll(".tipo-lan");
+
+  // recebo em array os valores calculados
+  const valoresCalculados = handler.calcularValores(valores, tipoLan);
+
+  // pego todos os cards e coloco o valor formatado
+  const cardsEl = document.querySelectorAll(".card-valores");
+  cardsEl.forEach((card, i) => {
+    card.textContent = handler.formatarValor(valoresCalculados[i]);
+  });
 }

@@ -40,3 +40,27 @@ export function exibirElementos(selector, atributo, formatar) {
 export function LetrasMaiuscula(palavra) {
   return palavra.toUpperCase();
 }
+
+export function calcularValores(seletorValor, seletorTipo) {
+  // Array para armazenar os valores de pagamento, despesa e balanço
+  let valores = [0, 0, 0];
+
+  seletorValor.forEach((valor, i) => {
+    // Obtém o tipo de lançamento do elemento pela posição do valor
+    const tipo = seletorTipo[i].getAttribute("_tipoLan");
+
+    // Obtém o valor do elemento sem o R$ e converte para número
+    const num = Number(valor.textContent.split(" ").pop());
+
+    // Adiciona o valor ao tipo de lançamento correspondente
+    if (tipo == "pagamento") {
+      valores[0] += num;
+    } else {
+      valores[1] += num;
+    }
+  });
+
+  // Calcula o balanço subtraindo o valor de pagamentos do valor de despesas
+  valores[2] = valores[0] - valores[1];
+  return valores;
+}

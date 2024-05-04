@@ -32,21 +32,21 @@ export default class LoginCadastro {
     if (dom.nameInput) {
       error = this.validarNome();
     }
-    console.log("nome - ", error);
+
     // Verifica se email é valido
     if (!validator.isEmail(email)) {
       error = true;
       dom.inputInvalido(dom.emailInput);
       dom.mostrarMensagemErro(dom.emailInput, "Email inválido.");
     }
-    console.log("email - ", error);
+
     // senha é validada para ter o ranger esperado e não conter espaços em branco
     if (senha.length < 8 || senha.length > 35 || !/^[a-zA-Z0-9]+$/.test(senha)) {
       error = true;
       dom.inputInvalido(dom.senhaInput);
       dom.mostrarMensagemErro(dom.senhaInput, "Senha deve ter entre 8 e 35 caracteres válidos.");
     }
-    console.log("senha - ", error);
+
     if (!error) el.submit();
   }
 
