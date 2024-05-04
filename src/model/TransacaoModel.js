@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const transacaoSchema = mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", require: true }, // Referência ao ID do usuário
   valor: { type: Number, require: true },
   data: { type: Date, default: Date.now, require: true },
   categoria: { type: String, require: true },
@@ -80,8 +81,8 @@ Transacao.prototype.fomatarValor = function () {
 };
 
 // método estático
-Transacao.buscarTransicoes = async function () {
-  const transacoes = await TransacaoModel.find();
+Transacao.buscarTransicoes = async function (userId) {
+  const transacoes = await TransacaoModel.find({ userId }).populate("userId");
   return transacoes;
 };
 

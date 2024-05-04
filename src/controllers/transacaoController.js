@@ -6,7 +6,10 @@ exports.index = (req, res) => {
 
 exports.register = async (req, res) => {
   try {
+    // Adicionando o ID do usuário logado na transação
+    req.body.userId = req.session.user._id;
     console.log(req.body);
+
     const transacao = new Transacao(req.body);
     await transacao.register();
 
