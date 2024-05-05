@@ -10,6 +10,7 @@ const router = express.Router();
 
 // home
 router.get("/", homeController.index);
+router.post("/", homeController.filtrarMes);
 
 //login
 router.get("/login", loginController.index);

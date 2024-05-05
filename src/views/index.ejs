@@ -37,23 +37,64 @@
         </div>
       </div>
     </div>
+
+    <!-- Filtragem por mês -->
+    <div>
+      <div class="row">
+        <div class="col-md-4">
+          <form action="/" method="POST" class="p-2 p-md-3 border rounded-3">
+            <h5 class="form-title">Filtrar por mês:</h5>
+            <div class="form-floating">
+              <!-- Value = "2024-04" -->
+              <input type="month" class="form-control" min="2022-01" max="2028-01" name="dataConsulta" />
+              <label for="floatingInput">Data</label>
+            </div>
+            <div class="d-md-flex justify-content-md-end mt-3">
+              <button class="btn btn-primary" type="submit">Atualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- Tabela de transações -->
-    <div class="resposive-table">
-      <table class="table">
-        <% transacoes.forEach((transicao)=>{ %>
-        <tr>
-          <td class="data" _data="<%= transicao.data %>"></td>
-          <td class="valor" _valor="<%= transicao.valor %>"></td>
-          <td class="categoria" _categoria="<%= transicao.categoria %>"></td>
-          <td class="tipo-lan" _tipoLan="<%= transicao.tipoLancamento %>"></td>
-          <td>
-            <a href="/transacao/index/<%= transicao._id %>" class="">Editar</a>
-            <a href="/transacao/delete/<%= transicao._id %>" class="text-danger">Deletar</a>
-          </td>
-        </tr>
-        <% }); %>
+    <% if (transacoes.length > 0) { %>
+    <div class="responsive-table">
+      <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">Data</th>
+            <th class="text-center">Valor</th>
+            <th class="text-center">Categoria</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transacoes.forEach((transacao) => { %>
+          <tr>
+            <td class="data" _data="<%= transacao.data %>"></td>
+            <td class="valor" _valor="<%= transacao.valor %>"></td>
+            <td class="categoria" _categoria="<%= transacao.categoria %>"></td>
+            <td class="tipo-lan" _tipoLan="<%= transacao.tipoLancamento %>"></td>
+            <td>
+              <a href="/transacao/index/<%= transacao._id %>" class="">Editar</a>
+              <a href="/transacao/delete/<%= transacao._id %>" class="text-danger">Deletar</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
       </table>
     </div>
+    <% } else { %>
+    <div class="responsive-table">
+      <table class="table table-responsive">
+        <tr>
+          <td colspan="5">Nenhuma transação encontrada para este mês.</td>
+        </tr>
+      </table>
+    </div>
+    <% } %>
 
     <!-- Tela de não logado -->
     <% } else { %>

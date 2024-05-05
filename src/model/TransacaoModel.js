@@ -81,8 +81,22 @@ Transacao.prototype.fomatarValor = function () {
 };
 
 // método estático
-Transacao.buscarTransicoes = async function (userId) {
-  const transacoes = await TransacaoModel.find({ userId }).populate("userId");
+Transacao.buscarTransicoes = async function (userId, mesConsulta, anoConsulta) {
+  if (!mesConsulta && !anoConsulta) {
+    new Date();
+    mesConsulta = new Date().getMonth() + 1;
+    anoConsulta = new Date().getFullYear();
+  }
+
+  // Configura o filtro para buscar transações do usuário e do mês/ano especificados
+  const transacoes = await TransacaoModel.find({
+    userId,
+    $expr: {
+      $eq: [{ $year: "$data" }, anoConsulta], // Compara o ano
+      $eq: [{ $month: "$data" }, mesConsulta], // Compara o mês
+    },
+  }).populate("userId");
+
   return transacoes;
 };
 
