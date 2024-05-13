@@ -1,6 +1,6 @@
 .env
 node_modules
-.DS_Store
-.vscode/
 bundle.js
 bundle.js.map
+.DS_Store
+.vscode/

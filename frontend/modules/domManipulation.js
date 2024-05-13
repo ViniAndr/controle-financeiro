@@ -1,6 +1,8 @@
 import * as handler from "./dataHandler";
+// Atributos do formulário de login e cadastro
 export let emailInput, senhaInput, nameInput, checkboxInput;
 
+// função responsável por associar os inputs do formulário
 export function associarForm(form) {
   emailInput = form.querySelector('input[type="email"]');
   senhaInput = form.querySelector('input[type="password"]');

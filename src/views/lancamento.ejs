@@ -6,13 +6,13 @@
       <p class="text-center leed">Preencha os campos abaixo com os seus gastos ou pagamentos:</p>
       <%- include("includes/message") %>
       <% if(lancamento._id){ %>
-        <form action="/transacao/edt/<%= lancamento._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
+        <form action="/transacao/edt/<%= lancamento._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
           <% } else { %>
-            <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary">
+            <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
         <% } %>
         <!-- Valor -->
         <div class="form-floating mb-3">
-          <input type="number" class="form-control" name="valor" value="<%= lancamento.valor ?? '' %>" />
+          <input type="number" class="form-control input-valor" name="valor" value="<%= lancamento.valor ?? '' %>" />
           <label for="floatingInput">Valor (R$)</label>
         </div>
         <!-- Data -->
@@ -20,31 +20,33 @@
           <input
             value="<%= lancamento.data && lancamento.data.toISOString().split('T')[0] %>"
             type="date"
-            class="form-control"
+            class="form-control input-data"
             name="data"
           />
           <label for="floatingInput">Data</label>
         </div>
         <!-- Categoria -->
-        <select class="form-select pb-3 pt-3 mb-3" name="categoria">
-          <option>Categorias</option>
-          <option value="alimentacao" <%= lancamento.categoria === "alimentacao" ? 'selected' : '' %>>Alimentação</option>
-          <option value="comida" <%= lancamento.categoria === "comida" ? 'selected' : '' %>>Comida</option>
-          <option value="contas" <%= lancamento.categoria === "contas" ? 'selected' : '' %>>Contas</option>
-          <option value="curso" <%= lancamento.categoria === "curso" ? 'selected' : '' %>>Curso</option>
-          <option value="educacao" <%= lancamento.categoria === "educacao" ? 'selected' : '' %>>Educação</option>
-          <option value="escola" <%= lancamento.categoria === "escola" ? 'selected' : '' %>>Escola</option>
-          <option value="faculdade" <%= lancamento.categoria === "faculdade" ? 'selected' : '' %>>Faculdade</option>
-          <option value="jogos" <%= lancamento.categoria === "jogos" ? 'selected' : '' %>>Jogos</option>
-          <option value="lazer" <%= lancamento.categoria === "lazer" ? 'selected' : '' %>>Lazer</option>
-          <option value="moradia" <%= lancamento.categoria === "moradia" ? 'selected' : '' %>>Moradia</option>
-          <option value="outros" <%= lancamento.categoria === "outros" ? 'selected' : '' %>>Outros</option>
-          <option value="presentes" <%= lancamento.categoria === "presentes" ? 'selected' : '' %>>Presentes</option>
-          <option value="quarto" <%= lancamento.categoria === "quarto" ? 'selected' : '' %>>Quarto</option>
-          <option value="saude" <%= lancamento.categoria === "saude" ? 'selected' : '' %>>Saúde</option>
-          <option value="tecnologia" <%= lancamento.categoria === "tecnologia" ? 'selected' : '' %>>Tecnologia</option>
-          <option value="transporte" <%= lancamento.categoria === "transporte" ? 'selected' : '' %>>Transporte</option>
-        </select>
+        <div class=" mb-3 ">
+          <select class="pb-3 form-select pt-3 select-categoria" name="categoria">
+            <option>Categorias</option>
+            <option value="alimentacao" <%= lancamento.categoria === "alimentacao" ? 'selected' : '' %>>Alimentação</option>
+            <option value="comida" <%= lancamento.categoria === "comida" ? 'selected' : '' %>>Comida</option>
+            <option value="contas" <%= lancamento.categoria === "contas" ? 'selected' : '' %>>Contas</option>
+            <option value="curso" <%= lancamento.categoria === "curso" ? 'selected' : '' %>>Curso</option>
+            <option value="educacao" <%= lancamento.categoria === "educacao" ? 'selected' : '' %>>Educação</option>
+            <option value="escola" <%= lancamento.categoria === "escola" ? 'selected' : '' %>>Escola</option>
+            <option value="faculdade" <%= lancamento.categoria === "faculdade" ? 'selected' : '' %>>Faculdade</option>
+            <option value="jogos" <%= lancamento.categoria === "jogos" ? 'selected' : '' %>>Jogos</option>
+            <option value="lazer" <%= lancamento.categoria === "lazer" ? 'selected' : '' %>>Lazer</option>
+            <option value="moradia" <%= lancamento.categoria === "moradia" ? 'selected' : '' %>>Moradia</option>
+            <option value="outros" <%= lancamento.categoria === "outros" ? 'selected' : '' %>>Outros</option>
+            <option value="presentes" <%= lancamento.categoria === "presentes" ? 'selected' : '' %>>Presentes</option>
+            <option value="quarto" <%= lancamento.categoria === "quarto" ? 'selected' : '' %>>Quarto</option>
+            <option value="saude" <%= lancamento.categoria === "saude" ? 'selected' : '' %>>Saúde</option>
+            <option value="tecnologia" <%= lancamento.categoria === "tecnologia" ? 'selected' : '' %>>Tecnologia</option>
+            <option value="transporte" <%= lancamento.categoria === "transporte" ? 'selected' : '' %>>Transporte</option>
+          </select>
+        </div>
         <!-- Forma -->
         <div class="form-check">
           <input class="form-check-input" id="rdDespesa"  value="despesa" type="radio" name="tipoLancamento" <%=
