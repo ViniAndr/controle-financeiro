@@ -45,12 +45,12 @@ function validar() {
     dom.mostrarMensagemErro(selectCategoria, "Informe uma categoria valida");
   }
 
-  // verifica tipo de lançamento
+  // verifica tipo de transação
   if (rdDespesa.checked === false && rdPagamento.checked === false) {
     valido = false;
     dom.inputInvalido(rdDespesa);
     dom.inputInvalido(rdPagamento);
-    dom.mostrarMensagemErro(rdPagamento, "Selecione se é Pagamento ou Despesa");
+    dom.mostrarMensagemErro(rdPagamento, "Selecione se é receira ou Despesa");
   }
 
   return valido;

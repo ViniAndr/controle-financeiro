@@ -6,7 +6,7 @@
     <!-- Div de informações basicas -->
     <div>
       <h1 class="display-4 fw-bold h1-saudacao" _nome="<%= user.nome %>"></h1>
-      <p class="leed mb-0">Suas despesas estão listada abaixo:</p>
+      <p class="leed mb-0">Acompanhe abaixo as suas transações:</p>
     </div>
     <!-- Grupo de divs(Cards) -->
     <div>
@@ -14,24 +14,24 @@
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Valor Pago</h5>
-              <p class="card-text card-valores">R$ 100,00</p>
+              <h5 class="card-title">Receita</h5>
+              <p class="card-text card-valores">R$ 0,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Valor Gasto</h5>
-              <p class="card-text card-valores">R$ 50,00</p>
+              <h5 class="card-title">Gastos</h5>
+              <p class="card-text card-valores">R$ 0,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Balanço</h5>
-              <p class="card-text card-valores">R$ 50,00</p>
+              <h5 class="card-title">Saldo Atual</h5>
+              <p class="card-text card-valores">R$ 0,00</p>
             </div>
           </div>
         </div>
@@ -44,11 +44,7 @@
         <div class="col-md-4">
           <form action="/" method="POST" class="p-2 p-md-3 border rounded-3">
             <h5 class="form-title">Filtrar por mês:</h5>
-            <div class="form-floating">
-              <!-- Value = "2024-04" -->
-              <input type="month" class="form-control" min="2022-01" max="2028-01" name="dataConsulta" />
-              <label for="floatingInput">Data</label>
-            </div>
+            <input type="month" class="form-control" min="2022-01" max="2028-01" name="dataConsulta" />
             <div class="d-md-flex justify-content-md-end mt-3">
               <button class="btn btn-primary" type="submit">Atualizar</button>
             </div>
@@ -76,7 +72,7 @@
             <td class="data" _data="<%= transacao.data %>"></td>
             <td class="valor" _valor="<%= transacao.valor %>"></td>
             <td class="categoria" _categoria="<%= transacao.categoria %>"></td>
-            <td class="tipo-lan" _tipoLan="<%= transacao.tipoLancamento %>"></td>
+            <td class="tipo-tran" _tipotran="<%= transacao.tipoTransacao %>"></td>
             <td>
               <a href="/transacao/index/<%= transacao._id %>" class="">Editar</a>
               <a href="/transacao/delete/<%= transacao._id %>" class="text-danger">Deletar</a>
@@ -90,7 +86,7 @@
     <div class="responsive-table">
       <table class="table table-responsive">
         <tr>
-          <td colspan="5">Nenhuma transação encontrada para este mês.</td>
+          <td colspan="5">Nenhum registro encontrada para este mês.</td>
         </tr>
       </table>
     </div>

@@ -1,7 +1,7 @@
-const Transacao = require("../model/TransacaoModel");
+const TransacaoFinanceira = require("../model/TransacaoModel");
 exports.index = (req, res) => {
   // passar lancamento vazio e tratar no ejs
-  res.render("lancamento", { lancamento: {} });
+  res.render("formTransacao", { transacao: {} });
 };
 
 exports.register = async (req, res) => {
@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     req.body.userId = req.session.user._id;
     console.log(req.body);
 
-    const transacao = new Transacao(req.body);
+    const transacao = new TransacaoFinanceira(req.body);
     await transacao.register();
 
     if (transacao.errors.length > 0) {
@@ -35,10 +35,10 @@ exports.edtTransacao = async (req, res) => {
   try {
     if (!req.params.id) return res.render("404");
 
-    const lancamento = await Transacao.buscarPorId(req.params.id);
-    if (!lancamento) return res.render("404");
+    const transacao = await TransacaoFinanceira.buscarPorId(req.params.id);
+    if (!transacao) return res.render("404");
 
-    res.render("lancamento", { lancamento });
+    res.render("formTransacao", { transacao });
   } catch (error) {
     console.log(error);
     res.render("404");
@@ -48,7 +48,7 @@ exports.edtTransacao = async (req, res) => {
 exports.editar = async (req, res) => {
   try {
     if (!req.params.id) return res.render("404");
-    const transacao = new Transacao(req.body);
+    const transacao = new TransacaoFinanceira(req.body);
     transacao.edit(req.params.id);
 
     if (transacao.errors.length > 0) {
@@ -73,7 +73,7 @@ exports.delete = async (req, res) => {
   try {
     if (!req.params.id) return res.render("404");
 
-    const transacao = await Transacao.delete(req.params.id);
+    const transacao = await TransacaoFinanceira.delete(req.params.id);
     if (!transacao) return res.render("404");
 
     req.flash("success", "Transação deletada com sucesso");

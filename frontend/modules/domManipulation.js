@@ -68,11 +68,11 @@ function exibirCategorias() {
 
 // mostra o tipo decada lançamento com texto e imagem referente
 function exibirTipos() {
-  const tipos = document.querySelectorAll(".tipo-lan");
+  const tipos = document.querySelectorAll(".tipo-tran");
   tipos.forEach((el) => {
-    const tipo = el.getAttribute("_tipoLan");
+    const tipo = el.getAttribute("_tipotran");
     const descricao = handler.LetrasMaiuscula(tipo);
-    const imagem = tipo === "pagamento" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
+    const imagem = tipo === "receita" ? "./assets/img/pagamento.png" : "./assets/img/despesa.png";
 
     el.innerHTML = `${descricao} <img src="${imagem}" alt="${descricao}" />`;
   });
@@ -89,10 +89,10 @@ export function init() {
 }
 function valorCards() {
   const valores = document.querySelectorAll(".valor");
-  const tipoLan = document.querySelectorAll(".tipo-lan");
+  const tipotTansacao = document.querySelectorAll(".tipo-tran");
 
   // recebo em array os valores calculados
-  const valoresCalculados = handler.calcularValores(valores, tipoLan);
+  const valoresCalculados = handler.calcularValores(valores, tipotTansacao);
 
   // pego todos os cards e coloco o valor formatado
   const cardsEl = document.querySelectorAll(".card-valores");

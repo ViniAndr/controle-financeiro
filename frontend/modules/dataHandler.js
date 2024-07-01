@@ -47,7 +47,7 @@ export function calcularValores(seletorValor, seletorTipo) {
 
   seletorValor.forEach((valor, i) => {
     // Obtém o tipo de lançamento do elemento pela posição do valor
-    const tipo = seletorTipo[i].getAttribute("_tipoLan");
+    const tipo = seletorTipo[i].getAttribute("_tipotran");
 
     // Obtém o valor do elemento sem o R$ e converte para número
     const num = Number(valor.textContent.split(" ").pop());

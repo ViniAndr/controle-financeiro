@@ -5,7 +5,7 @@ const transacaoSchema = mongoose.Schema({
   valor: { type: Number, require: true },
   data: { type: Date, default: Date.now, require: true },
   categoria: { type: String, require: true },
-  tipoLancamento: { type: String, enum: ["pagamento", "despesa"], require: true },
+  tipoTransacao: { type: String, enum: ["receita", "despesa"], require: true },
 });
 
 const TransacaoModel = mongoose.model("Transacao", transacaoSchema);
@@ -47,7 +47,7 @@ Transacao.prototype.validar = function () {
     this.errors.push("Informe uma categoria valida");
   }
   // verfica se algum dos tipos de lançamento está marcado.
-  if (!this.body.tipoLancamento) {
+  if (!this.body.tipoTransacao) {
     this.errors.push("Selecione se é Pagamento ou Despesa");
   }
 };

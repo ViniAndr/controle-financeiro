@@ -4,7 +4,7 @@ require("dotenv").config();
 const path = require("path");
 //express
 const express = require("express");
-const rotas = require("./src/routes/routes.js");
+const rotas = require("./src/routes.js");
 const app = express();
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -23,6 +23,7 @@ mongoose
   })
   .catch((e) => console.log("Erro ao conectar ao BD", e));
 
+// Configuração da sessão
 const sessionOptions = session({
   secret: "Segredoooo",
   store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
@@ -34,7 +35,8 @@ const sessionOptions = session({
   },
 });
 
-app.use(express.static(path.relative(__dirname, "public")))
+// definindo o caminho para os arquivos estáticos
+app.use(express.static(path.relative(__dirname, "public")));
 
 // Configuração do body-parser para interpretar corpos de requisição codificados como URL
 app.use(express.urlencoded({ extended: true }));
@@ -52,6 +54,7 @@ app.use(middleware.meddlewareTodasRotas);
 // usando as rotas de routes
 app.use(rotas);
 
+// verifica se foi emitiu o evento de conexão com o BD para iniciar o servidor
 app.on("conectado", () => {
   app.listen(process.env.PORT, () => {
     console.log(`Servidor rodando na porta ${process.env.PORT}`);

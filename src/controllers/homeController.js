@@ -1,15 +1,19 @@
-const Transacao = require("../model/TransacaoModel");
+const TransacaoFinanceira = require("../model/TransacaoModel");
+
+// tela principal
 exports.index = async (req, res) => {
   const transacoes = req.session.user
-    ? await Transacao.buscarTransicoes(req.session.user._id)
-    : await Transacao.buscarTransicoes();
+    ? await TransacaoFinanceira.buscarTransicoes(req.session.user._id)
+    : await TransacaoFinanceira.buscarTransicoes();
   res.render("index", { transacoes });
 };
 
+// tela de login
 exports.login = (req, res) => {
   res.render("includes/login");
 };
 
+// tela de index com filtro de mes sobre os transacoes financeiros
 exports.filtrarMes = async (req, res) => {
   try {
     const { dataConsulta } = req.body;
@@ -19,7 +23,7 @@ exports.filtrarMes = async (req, res) => {
     const mes = dataConsulta.split("-")[1];
     const ano = dataConsulta.split("-")[0];
 
-    const transacoes = await Transacao.buscarTransicoes(userId, mes, ano);
+    const transacoes = await TransacaoFinanceira.buscarTransicoes(userId, mes, ano);
 
     res.render("index", { transacoes });
   } catch (error) {

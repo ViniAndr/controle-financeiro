@@ -1,12 +1,13 @@
 const express = require("express");
-const homeController = require("../controllers/homeController");
-const loginController = require("../controllers/loginController");
-const transacaoController = require("../controllers/transacaoController");
+const router = express.Router();
+
+// importações dos controlers
+const homeController = require("./controllers/homeController");
+const loginController = require("./controllers/loginController");
+const transacaoController = require("./controllers/transacaoController");
 
 //middleware
-const { loginRequired } = require("../middlewares/middleware");
-
-const router = express.Router();
+const { loginRequired } = require("./middlewares/middleware");
 
 // home
 router.get("/", homeController.index);
