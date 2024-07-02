@@ -1,132 +1,104 @@
 <%- include("includes/head") %> <%- include("includes/nav") %>
 
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
-  <div class="row align-items-center g-lg-4 py-5">
-    <%- include("includes/message") %> <% if(user){ %>
-    <!-- Div de informações basicas -->
-    <div>
-      <h1 class="display-4 fw-bold h1-saudacao" _nome="<%= user.nome %>"></h1>
-      <p class="leed mb-0">Acompanhe abaixo as suas transações:</p>
-    </div>
-    <!-- Grupo de divs(Cards) -->
-    <div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Receita</h5>
-              <p class="card-text card-valores">R$ 0,00</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Gastos</h5>
-              <p class="card-text card-valores">R$ 0,00</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Saldo Atual</h5>
-              <p class="card-text card-valores">R$ 0,00</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filtragem por mês -->
-    <div>
-      <div class="row">
-        <div class="col-md-4">
-          <form action="/" method="POST" class="p-2 p-md-3 border rounded-3">
-            <h5 class="form-title">Filtrar por mês:</h5>
-            <input type="month" class="form-control" min="2022-01" max="2028-01" name="dataConsulta" />
-            <div class="d-md-flex justify-content-md-end mt-3">
-              <button class="btn btn-primary" type="submit">Atualizar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tabela de transações -->
-    <% if (transacoes.length > 0) { %>
-    <div class="responsive-table">
-      <table class="table table-responsive table-striped">
-        <thead>
-          <tr>
-            <th class="text-center">Data</th>
-            <th class="text-center">Valor</th>
-            <th class="text-center">Categoria</th>
-            <th class="text-center">Tipo</th>
-            <th class="text-center">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% transacoes.forEach((transacao) => { %>
-          <tr>
-            <td class="data" _data="<%= transacao.data %>"></td>
-            <td class="valor" _valor="<%= transacao.valor %>"></td>
-            <td class="categoria" _categoria="<%= transacao.categoria %>"></td>
-            <td class="tipo-tran" _tipotran="<%= transacao.tipoTransacao %>"></td>
-            <td>
-              <a href="/transacao/index/<%= transacao._id %>" class="">Editar</a>
-              <a href="/transacao/delete/<%= transacao._id %>" class="text-danger">Deletar</a>
-            </td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    </div>
-    <% } else { %>
-    <div class="responsive-table">
-      <table class="table table-responsive">
-        <tr>
-          <td colspan="5">Nenhum registro encontrada para este mês.</td>
-        </tr>
-      </table>
-    </div>
-    <% } %>
-
-    <!-- Tela de não logado -->
-    <% } else { %>
-    <div class="col-lg-7 text-center text-lg-start">
-      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Junte-se a nós para simplificar seus gastos</h1>
-      <p class="col-lg-10 fs-4">
-        Bem-vindo ao nosso mundo de controle financeiro simplificado! Aqui, você pode gerenciar suas despesas de forma
-        inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
-      </p>
-    </div>
-
-    <!-- Formulario de cadastro -->
-    <div class="col-md-10 mx-auto col-lg-5">
-      <form action="/login/register" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary formRegister">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" placeholder="Nome" name="nome" />
-          <label for="floatingInput">Nome</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" placeholder="name@example.com" name="email" />
-          <label for="floatingInput">Email</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" placeholder="Senha" name="password" />
-          <label for="floatingPassword">Senha</label>
-        </div>
-        <div class="checkbox mb-3">
-          <label> <input type="checkbox" /> Mostrar senha </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-        <hr class="my-4" />
-        <small class="text-body-secondary">Se já tem sua conta criada, faça o <a href="/login">login</a></small>
-      </form>
-    </div>
-    <% } %>
+<!-- Container -->
+<div class="container c-g">
+  <!-- Mensagem do servidor -->
+  <%- include("includes/message") %>
+  <!-- Verifica se o usuario esta logado -->
+  <% if(user){ %>
+  <div>
+    <h1 class="h1-saudacao" _nome="<%= user.nome %>"></h1>
+    <p class="titulo-descricao">Acompanhe abaixo as suas transações:</p>
   </div>
+
+  <!-- Grupo de divs(Cards) -->
+  <div class="cards-flex">
+    <div class="card">
+      <h5 class="card-titulo">Receitas</h5>
+      <p class="card-valor">R$ 0,00</p>
+    </div>
+    <div class="card">
+      <h5 class="card-titulo">Gastos</h5>
+      <p class="card-valor">R$ 0,00</p>
+    </div>
+    <div class="card">
+      <h5 class="card-titulo">Saldo Atual</h5>
+      <p class="card-valor">R$ 0,00</p>
+    </div>
+  </div>
+
+  <!-- Tabela de transações -->
+  <% if (transacoes.length > 0) { %>
+  <div>
+    <table class="table-transacoes">
+      <!-- Cabecario -->
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Valor</th>
+          <th>Categoria</th>
+          <th>Tipo</th>
+          <th class="alinhar-direita">Ações</th>
+        </tr>
+      </thead>
+      <!-- Corpo -->
+      <tbody>
+        <% transacoes.forEach((transacao) => { %>
+        <tr>
+          <td class="data" _data="<%= transacao.data %>"></td>
+          <td class="valor" _valor="<%= transacao.valor %>"></td>
+          <td class="categoria" _categoria="<%= transacao.categoria %>"></td>
+          <td class="tipo-tran" _tipotran="<%= transacao.tipoTransacao %>"></td>
+          <td class="alinhar-direita">
+            <a href="/transacao/index/<%= transacao._id %>">Editar</a>
+            <a href="/transacao/delete/<%= transacao._id %>" class="text-danger">Deletar</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <!-- Fim da tabela -->
+  <% } else { %>
+  <div>
+    <p>Nenhuma transação cadastrada</p>
+  </div>
+  <% } %>
+
+  <!-- Tela de não logado -->
+  <% } else { %>
+  <div class="col-lg-7 text-center text-lg-start">
+    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Junte-se a nós para simplificar seus gastos</h1>
+    <p class="col-lg-10 fs-4">
+      Bem-vindo ao nosso mundo de controle financeiro simplificado! Aqui, você pode gerenciar suas despesas de forma
+      inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
+    </p>
+  </div>
+
+  <!-- Formulario de cadastro -->
+  <div class="col-md-10 mx-auto col-lg-5">
+    <form action="/login/register" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary formRegister">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="Nome" name="nome" />
+        <label for="floatingInput">Nome</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" placeholder="name@example.com" name="email" />
+        <label for="floatingInput">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" placeholder="Senha" name="password" />
+        <label for="floatingPassword">Senha</label>
+      </div>
+      <div class="checkbox mb-3">
+        <label> <input type="checkbox" /> Mostrar senha </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+      <hr class="my-4" />
+      <small class="text-body-secondary">Se já tem sua conta criada, faça o <a href="/login">login</a></small>
+    </form>
+  </div>
+  <% } %>
 </div>
 
 <%- include("includes/footer") %>

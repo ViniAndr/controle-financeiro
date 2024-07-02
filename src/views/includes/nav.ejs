@@ -1,30 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Controle financeiro</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/transacao">Adicionar transação</a>
-        </li>
-        <li class="nav-item">
-          <% if(!user) { %>
-          <a class="nav-link active" aria-current="page" href="/login">Entrar</a>
-          <% } else { %>
-          <a class="nav-link active" aria-current="page" href="/logout">Sair</a>
-          <% } %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<header class="cabecario">
+  <a class="logo" href="/">Controle financeiro</a>
+  <ul class="navbar">
+    <li>
+      <a href="/transacao">Adicionar transação</a>
+    </li>
+    <li>
+      <% if(!user) { %>
+      <a class="btn botao-principal" href="/login">Login</a>
+      <% } else { %>
+      <a class="btn botao-principal" href="/logout">Sair</a>
+      <% } %>
+    </li>
+  </ul>
+</header>

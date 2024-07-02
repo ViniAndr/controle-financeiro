@@ -1,0 +1,11 @@
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/globais";
+
+// Components
+@import "components/header";
+@import "components/message";
+
+//pages
+@import "pages/home";
+@import "pages/formTransacao";

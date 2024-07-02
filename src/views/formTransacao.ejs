@@ -1,67 +1,50 @@
-<%- include("includes/head") %> <%- include("includes/nav") %>
-<div class="container">
-  <div class="row my-5">
-    <div class="col-md-6 offset-md-3 login-form">
-      <h1 class="text-center">Crei um novo registro financeiro</h1>
-      <p class="text-center leed">Preencha os campos abaixo com os seus gastos ou receitas:</p>
-      <%- include("includes/message") %>
-      <% if(transacao._id){ %>
-        <form action="/transacao/edt/<%= transacao._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
-          <% } else { %>
-            <form action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
-        <% } %>
-        <!-- Valor -->
-        <div class="form-floating mb-3">
-          <input type="number" class="form-control input-valor" name="valor" value="<%= transacao.valor ?? '' %>" />
-          <label for="floatingInput">Valor (R$)</label>
-        </div>
-        <!-- Data -->
-        <div class="form-floating mb-3">
-          <input
-            value="<%= transacao.data && transacao.data.toISOString().split('T')[0] %>"
-            type="date"
-            class="form-control input-data"
-            name="data"
-          />
-          <label for="floatingInput">Data</label>
-        </div>
-        <!-- Categoria -->
-        <div class=" mb-3 ">
-          <select class="pb-3 form-select pt-3 select-categoria" name="categoria">
-            <option>Categorias</option>
-            <option value="alimentacao" <%= transacao.categoria === "alimentacao" ? 'selected' : '' %>>Alimentação</option>
-            <option value="comida" <%= transacao.categoria === "comida" ? 'selected' : '' %>>Comida</option>
-            <option value="contas" <%= transacao.categoria === "contas" ? 'selected' : '' %>>Contas</option>
-            <option value="curso" <%= transacao.categoria === "curso" ? 'selected' : '' %>>Curso</option>
-            <option value="educacao" <%= transacao.categoria === "educacao" ? 'selected' : '' %>>Educação</option>
-            <option value="escola" <%= transacao.categoria === "escola" ? 'selected' : '' %>>Escola</option>
-            <option value="faculdade" <%= transacao.categoria === "faculdade" ? 'selected' : '' %>>Faculdade</option>
-            <option value="jogos" <%= transacao.categoria === "jogos" ? 'selected' : '' %>>Jogos</option>
-            <option value="lazer" <%= transacao.categoria === "lazer" ? 'selected' : '' %>>Lazer</option>
-            <option value="moradia" <%= transacao.categoria === "moradia" ? 'selected' : '' %>>Moradia</option>
-            <option value="outros" <%= transacao.categoria === "outros" ? 'selected' : '' %>>Outros</option>
-            <option value="presentes" <%= transacao.categoria === "presentes" ? 'selected' : '' %>>Presentes</option>
-            <option value="quarto" <%= transacao.categoria === "quarto" ? 'selected' : '' %>>Quarto</option>
-            <option value="saude" <%= transacao.categoria === "saude" ? 'selected' : '' %>>Saúde</option>
-            <option value="tecnologia" <%= transacao.categoria === "tecnologia" ? 'selected' : '' %>>Tecnologia</option>
-            <option value="transporte" <%= transacao.categoria === "transporte" ? 'selected' : '' %>>Transporte</option>
-          </select>
-        </div>
-        <!-- Forma -->
-        <div class="form-check">
-          <input class="form-check-input" id="rdReceita" value="receita" type="radio" name="tipoTransacao" <%=
-          transacao.tipoTransacao === "receita" ? 'checked' : '' %>/>
-          <label class="form-check-label" for="rdReceita"> Receita </label>
-        </div>
-        <div class="form-check mb-3">
-          <input class="form-check-input" id="rdDespesa"  value="despesa" type="radio" name="tipoTransacao" <%=
-          transacao.tipoTransacao === "despesa" ? 'checked' : '' %> />
-          <label class="form-check-label" for="rdDespesa"> Despesa </label>
-        </div>
-        <!-- Botão -->
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Adicionar</button>
-      </form>
+<%- include("includes/head") %> 
+<%- include("includes/nav") %>
+
+<div class="container c-s">
+  <%- include("includes/message") %>
+  <!-- Verifica se vem de editar -->
+  <% if(transacao._id){ %>
+    <form class="form-transacao" action="/transacao/edt/<%= transacao._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
+      <h1>Atualizar transação</h1>
+  <% } else { %>
+    <form class="form-transacao" action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
+      <h1>Adicionar Transação</h1>
+  <% } %>
+
+    <!-- Valor -->
+    <input type="number" class="input-valor" name="valor" placeholder="Valor(R$)" value="<%= transacao.valor ?? '' %>" required/>
+
+    <!-- Data -->
+    <div class="label-acima">
+      <label>Data</label>
+      <input value="<%= transacao.data && transacao.data.toISOString().split('T')[0] %>" type="date" class="input-data" name="data" required/>
     </div>
-  </div>
+
+    <!-- Categoria -->
+    <div class="label-acima">
+      <label>Categoria</label>
+      <select id="selectCategoria" class="select-categoria" name="categoria" required _categoria="<%= transacao.categoria %>">
+        <option value="">Selecione o tipo de Transação</option>
+        <!-- Categorias serão carregadas dinamicamente -->
+      </select>
+    </div>
+
+    <!-- Tipo de Transação -->
+    <div>
+      <div>
+        <input id="rdReceita" value="receita" type="radio" name="tipoTransacao" <%=transacao.tipoTransacao === "receita" ? 'checked' : '' %>/>
+        <label for="rdReceita"> Receita </label>
+      </div>
+      <div>
+        <input id="rdDespesa" value="despesa" type="radio" name="tipoTransacao" <%=transacao.tipoTransacao === "despesa" ? 'checked' : '' %>/>
+        <label for="rdDespesa"> Despesa </label>
+      </div>
+    </div>
+
+    <!-- Botão -->
+    <button class="btn botao-principal" type="submit"><%= transacao._id? "Atualizar":"Adicionar" %></button>
+  </form>
 </div>
+
 <%- include("includes/footer") %>

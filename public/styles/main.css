@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 1.5;
+  list-style: none;
+}
+
+body {
+  background-color: #effffb;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  padding: 0 10px;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.c-g {
+  max-width: 1200px;
+  min-width: 400px;
+}
+
+.c-s {
+  max-width: 450px;
+  min-width: 300px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #bd2130;
+}
+
+.botao-principal {
+  background-color: #3cb371;
+  color: #fff;
+}
+.botao-principal:hover {
+  background-color: #2f8d59;
+}
+
+.botao-segundario {
+  background-color: #f4d279;
+  color: #fff;
+}
+.botao-segundario:hover {
+  background-color: #2f8d59;
+}
+
+.titulo-h1 {
+  font-size: 2.5rem;
+}
+
+.titulo-descricao {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.texto-segundario {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+.texto-segundario a {
+  color: blue;
+}
+
+hr {
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+.form-texto-erro {
+  color: #dc3545;
+  font-size: 0.8rem;
+}
+
+.is-invalid {
+  border: 1px solid #dc3545 !important;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.cabecario {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  background-color: #212121;
+  color: #fff;
+}
+.cabecario a {
+  color: #fff;
+  text-decoration: none;
+}
+.cabecario .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.cabecario .navbar {
+  display: flex;
+  align-items: center;
+}
+.cabecario .navbar .btn {
+  margin-left: 15px;
+}
+
+.alert {
+  padding: 10px;
+  text-align: center;
+  max-width: 800px;
+  min-width: 300px;
+  width: 100%;
+  margin: auto;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.alert-success {
+  background-color: #145aca;
+}
+
+.alert-danger {
+  background-color: #ff0000;
+}
+
+.cards-flex {
+  display: flex;
+  gap: 10px;
+}
+.cards-flex .card {
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  min-width: 170px;
+  flex: 1;
+}
+.cards-flex .card .card-titulo {
+  font-size: 1.2rem;
+  margin-bottom: 0.2em;
+}
+.cards-flex .card .card-valor {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 560px) {
+  .cards-flex {
+    flex-wrap: wrap;
+  }
+  .cards-flex .card {
+    max-width: 100%;
+  }
+}
+.table-transacoes {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.1);
+}
+.table-transacoes th {
+  background-color: #3cb371;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+.table-transacoes td {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.table-transacoes .tipo-tran {
+  display: flex;
+  align-items: center;
+}
+.table-transacoes .alinhar-direita {
+  text-align: right;
+}
+
+.form-transacao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.form-transacao .label-acima {
+  display: flex;
+  flex-direction: column;
+}
+.form-transacao input:not([type=radio]),
+.form-transacao select {
+  padding-left: 8px;
+  height: 35px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+}
+.form-transacao input:not([type=radio]):focus,
+.form-transacao select:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 1.5;
+  list-style: none;
+}
+body {
+  background-color: $cor-bg;
+  font-family: "Poppins", sans-serif;
+}
+
+//containers
+.container {
+  padding: 0 10px;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+.c-g {
+  max-width: 1200px;
+  min-width: 400px;
+}
+.c-s {
+  max-width: 450px;
+  min-width: 300px;
+}
+
+// Botão
+.btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-danger {
+  background-color: $cor-danger;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($cor-danger, 10%);
+  }
+}
+
+.botao-principal {
+  background-color: $cor-secundaria;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($cor-secundaria, 10%);
+  }
+}
+
+.botao-segundario {
+  background-color: #f4d279;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($cor-secundaria, 10%);
+  }
+}
+
+// Titulos (Texto)
+.titulo-h1 {
+  font-size: 2.5rem;
+}
+.titulo-descricao {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+.texto-segundario {
+  font-size: 0.9rem;
+  color: $texto-segundario;
+
+  a {
+    color: blue;
+  }
+}
+
+//linha
+hr {
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+// mensagem de erro do formulario
+.form-texto-erro {
+  color: $cor-danger;
+  font-size: 0.8rem;
+}
+.is-invalid {
+  border: 1px solid $cor-danger !important;
+}
+
+// ul e li
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}

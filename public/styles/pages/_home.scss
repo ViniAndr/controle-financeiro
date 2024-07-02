@@ -1,0 +1,65 @@
+//  Design dos cards
+.cards-flex {
+  display: flex;
+  gap: 10px;
+
+  .card {
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-width: 170px;
+    flex: 1;
+
+    .card-titulo {
+      font-size: 1.2rem;
+      margin-bottom: 0.2em;
+    }
+
+    .card-valor {
+      font-weight: 300;
+      color: $texto-segundario;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .cards-flex {
+    flex-wrap: wrap;
+
+    .card {
+      max-width: 100%;
+    }
+  }
+}
+
+// Design da tabela
+.table-transacoes {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.1);
+
+  th {
+    background-color: $cor-secundaria;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .tipo-tran {
+    display: flex;
+    align-items: center;
+  }
+
+  .alinhar-direita {
+    text-align: right;
+  }
+}
