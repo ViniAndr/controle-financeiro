@@ -1,0 +1,18 @@
+<div id="filterModal" class="modal">
+  <div class="modal-content c-s">
+    <div class="header-modal">
+      <h2>Selecione o mês e ano</h2>
+      <!-- Bnt de fechar -->
+      <span class="close-btn">&times;</span>
+    </div>
+    <form action="/" id="filterForm" method="POST">
+      <!-- Filtro de mês -->
+      <div class="form-group">
+        <label for="dataInicio">Mês</label>
+        <input type="month" min="2022-01" max="2028-01" required name="dataConsulta" />
+      </div>
+
+      <input class="btn botao-principal" type="submit" value="Aplicar Filtros" />
+    </form>
+  </div>
+</div>

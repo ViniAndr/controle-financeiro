@@ -9,7 +9,6 @@ export default class LoginCadastro {
   init() {
     if (!this.form) return;
     dom.associarForm(this.form);
-    this.mostraSenha();
     this.event();
   }
 
@@ -59,11 +58,5 @@ export default class LoginCadastro {
       return true;
     }
     return false;
-  }
-
-  mostraSenha() {
-    dom.checkboxInput.addEventListener("click", () => {
-      dom.senhaInput.type = dom.checkboxInput.checked ? "text" : "password";
-    });
   }
 }

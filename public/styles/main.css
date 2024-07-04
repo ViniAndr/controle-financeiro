@@ -15,8 +15,7 @@ body {
 .container {
   padding: 0 10px;
   width: 100%;
-  margin: auto;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 .c-g {
@@ -73,10 +72,11 @@ body {
 
 .titulo-h1 {
   font-size: 2.5rem;
+  line-height: 1.1;
 }
 
 .titulo-descricao {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 20px;
   font-weight: 300;
 }
@@ -89,8 +89,12 @@ body {
   color: blue;
 }
 
+.text-danger {
+  font-size: 0.9rem;
+  color: #dc3545;
+}
+
 hr {
-  margin: 20px 0;
   opacity: 0.5;
 }
 
@@ -108,6 +112,35 @@ hr {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group input:not([type=radio]),
+.form-group select {
+  padding-left: 8px;
+  height: 45px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+}
+.form-group input:not([type=radio]):focus,
+.form-group select:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .cabecario {
@@ -157,6 +190,53 @@ hr {
   background-color: #ff0000;
 }
 
+/* styles.css */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#filterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header-modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .cards-flex {
   display: flex;
   gap: 10px;
@@ -179,7 +259,7 @@ hr {
   color: rgba(0, 0, 0, 0.55);
 }
 
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
   .cards-flex {
     flex-wrap: wrap;
   }
@@ -187,8 +267,12 @@ hr {
     max-width: 100%;
   }
 }
-.table-transacoes {
+.btn-grup-filtro {
   margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.table-transacoes {
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
@@ -212,32 +296,55 @@ hr {
   text-align: right;
 }
 
-.form-transacao {
+.section-nao-logado {
+  margin-top: 10%;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.form-transacao .label-acima {
-  display: flex;
-  flex-direction: column;
+.section-nao-logado .div-informativo {
+  max-width: 650px;
 }
-.form-transacao input:not([type=radio]),
-.form-transacao select {
-  padding-left: 8px;
-  height: 35px;
-  font-size: 0.9rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #efefef;
+.section-nao-logado .div-informativo .titulo-g {
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 700;
+  width: 100%;
 }
-.form-transacao input:not([type=radio]):focus,
-.form-transacao select:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.3);
+.section-nao-logado .div-informativo p {
+  width: 80%;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 0.5em;
+}
+.section-nao-logado .formRegister {
+  min-width: 380px;
+}
+
+@media screen and (max-width: 1100px) {
+  .section-nao-logado .div-informativo {
+    text-align: center;
+  }
+  .section-nao-logado .div-informativo p {
+    text-align: center;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .section-nao-logado .div-informativo .titulo-g {
+    font-size: 2.5rem;
+  }
+  .section-nao-logado .div-informativo p {
+    font-size: 1.2rem;
+  }
+}
+.msg-sem-transacao {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 /*# sourceMappingURL=main.css.map */

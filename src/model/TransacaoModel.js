@@ -5,7 +5,7 @@ const transacaoSchema = mongoose.Schema({
   valor: { type: Number, require: true },
   data: { type: Date, default: Date.now, require: true },
   categoria: { type: String, require: true },
-  tipoTransacao: { type: String, enum: ["receita", "despesa"], require: true },
+  tipoTransacao: { type: String, enum: ["receita", "gasto"], require: true },
 });
 
 const TransacaoModel = mongoose.model("Transacao", transacaoSchema);

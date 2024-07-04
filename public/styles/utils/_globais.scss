@@ -15,8 +15,7 @@ body {
 .container {
   padding: 0 10px;
   width: 100%;
-  margin: auto;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 .c-g {
   max-width: 1200px;
@@ -75,9 +74,10 @@ body {
 // Titulos (Texto)
 .titulo-h1 {
   font-size: 2.5rem;
+  line-height: 1.1;
 }
 .titulo-descricao {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 20px;
   font-weight: 300;
 }
@@ -89,10 +89,13 @@ body {
     color: blue;
   }
 }
+.text-danger {
+  font-size: 0.9rem;
+  color: $cor-danger;
+}
 
 //linha
 hr {
-  margin: 20px 0;
   opacity: 0.5;
 }
 
@@ -111,4 +114,35 @@ hr {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
+}
+
+// configurar inputs e labels padão
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  input:not([type="radio"]),
+  select {
+    padding-left: 8px;
+    height: 45px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #efefef;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }

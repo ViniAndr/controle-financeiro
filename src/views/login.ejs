@@ -1,29 +1,33 @@
 <%- include("includes/head") %> <%- include("includes/nav") %>
-<div class="container">
-  <div class="row my-5">
-    <div class="col-md-6 offset-md-3 login-form">
-      <h1 class="text-center">Criar Conta ou Entrar</h1>
-      <p class="text-center leed">Preencha os campos abaixo para poder entrar na sua conta:</p>
-      <%- include("includes/message") %>
-      <form action="/login/login" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary formLogin">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" placeholder="name@example.com" name="email" />
-          <label for="floatingInput">Email</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" placeholder="Senha" name="password" />
-          <label for="floatingPassword">Senha</label>
-        </div>
-        <div class="checkbox mb-3">
-          <label> <input type="checkbox" /> Mostrar senha </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar na conta</button>
-        <hr class="my-4" />
-        <small class="text-body-secondary"
-          >Se ainda não tem uma conta, faça a sua agora em <a href="/">criar conta</a></small
-        >
-      </form>
-    </div>
+<div class="container c-s">
+  <div>
+    <h1>Criar Conta ou Entrar</h1>
+    <p class="titulo-descricao">Preencha os campos abaixo para poder entrar na sua conta:</p>
+    <%- include("includes/message") %>
+    <form action="/login/login" method="POST" class="form">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="floatingInput">Email</label>
+        <input type="email" class="form-control" placeholder="name@example.com" name="email" />
+      </div>
+      <!-- Senha -->
+      <div class="form-group">
+        <label for="floatingPassword">Senha</label>
+        <input type="password" class="form-control input-senha" placeholder="Senha" name="password" />
+      </div>
+      <!-- Mostrar senha -->
+      <div class="checkbox mb-3">
+        <label> <input type="checkbox" class="checkbox-mostraSenha" /> Mostrar senha </label>
+      </div>
+
+      <button class="btn botao-principal" type="submit">Entrar na conta</button>
+
+      <hr />
+
+      <small class="texto-segundario"
+        >Se ainda não tem uma conta, faça a sua agora em <a href="/">criar conta</a></small
+      >
+    </form>
   </div>
 </div>
 <%- include("includes/footer") %>

@@ -3,16 +3,16 @@ import * as dom from "./domManipulation";
 const inputValor = document.querySelector(".input-valor");
 const inputData = document.querySelector(".input-data");
 const selectCategoria = document.querySelector(".select-categoria");
-const rdDespesa = document.querySelector("#rdDespesa");
-const rdPagamento = document.querySelector("#rdPagamento");
+const rdGasto = document.querySelector("#rdGasto");
+const rdPagamento = document.querySelector("#rdReceita");
 
-const formDespesa = document.querySelector(".form-despesa");
+const form = document.querySelector(".form-transacao");
 
-export function formularioDespesa() {
+export function formTransacao() {
   // se na página exibida não tiver o formulário de despesa, não executa o código
-  if (!formDespesa) return;
+  if (!form) return;
 
-  formDespesa.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     dom.removeMsg();
     const valido = validar();
@@ -46,9 +46,9 @@ function validar() {
   }
 
   // verifica tipo de transação
-  if (rdDespesa.checked === false && rdPagamento.checked === false) {
+  if (rdGasto.checked === false && rdPagamento.checked === false) {
     valido = false;
-    dom.inputInvalido(rdDespesa);
+    dom.inputInvalido(rdGasto);
     dom.inputInvalido(rdPagamento);
     dom.mostrarMensagemErro(rdPagamento, "Selecione se é receira ou Despesa");
   }

@@ -27,6 +27,11 @@
     </div>
   </div>
 
+  <!-- Btn de filtros -->
+  <div class="btn-grup-filtro">
+    <button class="btn botao-principal" id="filterBtn">Buscar por mês</button>
+  </div>
+
   <!-- Tabela de transações -->
   <% if (transacoes.length > 0) { %>
   <div>
@@ -60,45 +65,51 @@
   </div>
   <!-- Fim da tabela -->
   <% } else { %>
-  <div>
-    <p>Nenhuma transação cadastrada</p>
+  <div class="msg-sem-transacao">
+    <p>Nenhuma transação cadastrada para esse mês</p>
   </div>
   <% } %>
 
   <!-- Tela de não logado -->
   <% } else { %>
-  <div class="col-lg-7 text-center text-lg-start">
-    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Junte-se a nós para simplificar seus gastos</h1>
-    <p class="col-lg-10 fs-4">
-      Bem-vindo ao nosso mundo de controle financeiro simplificado! Aqui, você pode gerenciar suas despesas de forma
-      inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
-    </p>
-  </div>
+  <section class="section-nao-logado">
+    <!-- Texto informativa -->
+    <div class="div-informativo">
+      <h1 class="titulo-g">Junte-se a nós para simplificar seus gastos</h1>
+      <p>
+        Bem-vindo ao nosso mundo de controle financeiro simplificado! Aqui, você pode gerenciar suas despesas de forma
+        inteligente e eficiente. Junte-se a nós hoje mesmo e comece a trilhar o caminho rumo à estabilidade financeira.
+      </p>
+    </div>
 
-  <!-- Formulario de cadastro -->
-  <div class="col-md-10 mx-auto col-lg-5">
-    <form action="/login/register" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary formRegister">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder="Nome" name="nome" />
+    <!-- Formulario de cadastro -->
+    <form action="/login/register" method="POST" class="form formRegister">
+      <!-- Nome -->
+      <div class="form-group">
         <label for="floatingInput">Nome</label>
+        <input type="text" class="form-control" placeholder="Nome" name="nome" />
       </div>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" placeholder="name@example.com" name="email" />
+      <!-- Email -->
+      <div class="form-group">
         <label for="floatingInput">Email</label>
+        <input type="email" class="form-control" placeholder="name@example.com" name="email" />
       </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" placeholder="Senha" name="password" />
+      <!-- Senha -->
+      <div class="form-group">
         <label for="floatingPassword">Senha</label>
+        <input type="password" class="form-control input-senha" placeholder="Senha" name="password" />
       </div>
+      <!-- Mostrar senha -->
       <div class="checkbox mb-3">
-        <label> <input type="checkbox" /> Mostrar senha </label>
+        <label> <input type="checkbox" class="checkbox-mostraSenha" /> Mostrar senha </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-      <hr class="my-4" />
-      <small class="text-body-secondary">Se já tem sua conta criada, faça o <a href="/login">login</a></small>
+
+      <button class="btn botao-principal" type="submit">Cadastrar</button>
+      <hr />
+      <small class="texto-segundario">Se já tem sua conta criada, faça o <a href="/login">login</a></small>
     </form>
-  </div>
+  </section>
   <% } %>
 </div>
 
-<%- include("includes/footer") %>
+<%- include('includes/filtroModal') %> <%- include("includes/footer") %>

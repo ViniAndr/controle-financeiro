@@ -1,4 +1,6 @@
+import { set } from "mongoose";
 import * as handler from "./dataHandler";
+import { formTransacao } from "./formTransacao";
 
 // Atributos do formulário de login e cadastro
 export let emailInput, senhaInput, nameInput, checkboxInput;
@@ -23,14 +25,14 @@ export function inputInvalido(input) {
 export function mostrarMensagemErro(input, mensagem) {
   const elPai = input.parentElement;
   const msg = document.createElement("div");
-  msg.className = "form-text text-danger";
+  msg.className = "msg-erro text-danger";
   msg.textContent = mensagem;
   elPai.appendChild(msg);
 }
 
 // responsável por remover a mensagem de erro abaixo do input
 export function removeMsg() {
-  const msgs = document.querySelectorAll(".form-text");
+  const msgs = document.querySelectorAll(".msg-erro");
   msgs.forEach((msg) => {
     msg.remove();
   });
@@ -86,10 +88,13 @@ export function init() {
   exibirTipos();
   valorCards();
   atualizarCategoriasDinamicamente();
+  mostrarSenha();
+  removerAlerta();
 }
 
 function valorCards() {
   const valores = document.querySelectorAll(".valor");
+  if (!valores) return; // finalizar a função caso não exista valores
   const tipotTansacao = document.querySelectorAll(".tipo-tran");
 
   // recebo em array os valores calculados
@@ -104,32 +109,31 @@ function valorCards() {
 
 // função para atualizar dinamicamente as categorias com base no tipo de transação
 function atualizarCategoriasDinamicamente() {
-  const rdReceita = document.getElementById('rdReceita');
-  const rdDespesa = document.getElementById('rdDespesa');
-  const selectCategoria = document.getElementById('selectCategoria');
+  const rdReceita = document.getElementById("rdReceita");
+  const rdGasto = document.getElementById("rdGasto");
+  const selectCategoria = document.getElementById("selectCategoria");
 
-  
   // finalizar a função caso algum dos elementos não exista (pagina diferente)
-  if (!rdReceita || !rdDespesa || !selectCategoria) return;
+  if (!rdReceita || !rdGasto || !selectCategoria) return;
 
-  const valorCategoriaEdit = selectCategoria.getAttribute('_categoria');
+  const valorCategoriaEdit = selectCategoria.getAttribute("_categoria");
 
   const categoriasReceita = [
-    { value: 'salario', text: 'Salário' },
-    { value: 'investimento', text: 'Investimento' },
-    { value: 'outros', text: 'Outros' }
+    { value: "salario", text: "Salário" },
+    { value: "investimento", text: "Investimento" },
+    { value: "outros", text: "Outros" },
   ];
 
-  const categoriasDespesa = [
-    { value: 'contas', text: 'Contas' },
-    { value: 'alimentacao', text: 'Alimentação' },
-    { value: 'transporte', text: 'Transporte' },
-    { value: 'outros', text: 'Outros' }
+  const categoriasGasto = [
+    { value: "contas", text: "Contas" },
+    { value: "alimentacao", text: "Alimentação" },
+    { value: "transporte", text: "Transporte" },
+    { value: "outros", text: "Outros" },
   ];
 
   function atualizarCategorias(categorias) {
-    categorias.forEach(categoria => {
-      const option = document.createElement('option');
+    categorias.forEach((categoria) => {
+      const option = document.createElement("option");
       option.value = categoria.value;
       option.textContent = categoria.text;
       selectCategoria.appendChild(option);
@@ -141,24 +145,73 @@ function atualizarCategoriasDinamicamente() {
     });
   }
 
-  rdReceita.addEventListener('change', () => {
+  rdReceita.addEventListener("change", () => {
     if (rdReceita.checked) {
-      selectCategoria.innerHTML = '';
+      selectCategoria.innerHTML = "";
       atualizarCategorias(categoriasReceita);
     }
   });
 
-  rdDespesa.addEventListener('change', () => {
-    if (rdDespesa.checked) {
-      selectCategoria.innerHTML = '';
-      atualizarCategorias(categoriasDespesa);
+  rdGasto.addEventListener("change", () => {
+    if (rdGasto.checked) {
+      selectCategoria.innerHTML = "";
+      atualizarCategorias(categoriasGasto);
     }
   });
 
   // Verifica qual radio está marcado ao carregar a página
   if (rdReceita.checked) {
     atualizarCategorias(categoriasReceita);
-  } else if (rdDespesa.checked) {
-    atualizarCategorias(categoriasDespesa);
+  } else if (rdGasto.checked) {
+    atualizarCategorias(categoriasGasto);
   }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // validar no front o formulário de transação
+  formTransacao();
+
+  // Abri filtro de mês
+  const filterBtn = document.getElementById("filterBtn");
+  if (!filterBtn) return;
+
+  const filterModal = document.getElementById("filterModal");
+  const closeBtn = document.querySelector(".close-btn");
+
+  filterBtn.addEventListener("click", () => {
+    filterModal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    filterModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === filterModal) {
+      filterModal.style.display = "none";
+    }
+  });
+});
+
+function mostrarSenha() {
+  const checkbox = document.querySelector(".checkbox-mostraSenha");
+  const inputSenha = document.querySelector(".input-senha");
+
+  // finalizar a função caso não exista os elementos
+  if (!checkbox || !inputSenha) return;
+
+  checkbox.addEventListener("click", () => {
+    if (inputSenha.type === "password") {
+      inputSenha.type = "text";
+    } else {
+      inputSenha.type = "password";
+    }
+  });
+}
+
+function removerAlerta() {
+  const alerta = document.querySelector(".alert");
+  setTimeout(() => {
+    if (alerta) alerta.remove();
+  }, 3000);
 }

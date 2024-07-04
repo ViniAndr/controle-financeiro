@@ -5,24 +5,26 @@
   <%- include("includes/message") %>
   <!-- Verifica se vem de editar -->
   <% if(transacao._id){ %>
-    <form class="form-transacao" action="/transacao/edt/<%= transacao._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
+    <form class="form form-transacao" action="/transacao/edt/<%= transacao._id %>" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
       <h1>Atualizar transação</h1>
   <% } else { %>
-    <form class="form-transacao" action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
+    <form class="form form-transacao" action="/transacao/register" method="POST" class="p-2 p-md-3 border rounded-3 bg-body-tertiary form-despesa">
       <h1>Adicionar Transação</h1>
   <% } %>
 
     <!-- Valor -->
-    <input type="number" class="input-valor" name="valor" placeholder="Valor(R$)" value="<%= transacao.valor ?? '' %>" required/>
+    <div class="form-group">
+      <input type="number" class="input-valor" name="valor" placeholder="Valor(R$)" value="<%= transacao.valor ?? '' %>" required/>
+    </div>
 
     <!-- Data -->
-    <div class="label-acima">
+    <div class="form-group">
       <label>Data</label>
       <input value="<%= transacao.data && transacao.data.toISOString().split('T')[0] %>" type="date" class="input-data" name="data" required/>
     </div>
 
     <!-- Categoria -->
-    <div class="label-acima">
+    <div class="form-group">
       <label>Categoria</label>
       <select id="selectCategoria" class="select-categoria" name="categoria" required _categoria="<%= transacao.categoria %>">
         <option value="">Selecione o tipo de Transação</option>
@@ -37,8 +39,8 @@
         <label for="rdReceita"> Receita </label>
       </div>
       <div>
-        <input id="rdDespesa" value="despesa" type="radio" name="tipoTransacao" <%=transacao.tipoTransacao === "despesa" ? 'checked' : '' %>/>
-        <label for="rdDespesa"> Despesa </label>
+        <input id="rdGasto" value="gasto" type="radio" name="tipoTransacao" <%=transacao.tipoTransacao === "gasto" ? 'checked' : '' %>/>
+        <label for="rdGasto"> Gasto </label>
       </div>
     </div>
 

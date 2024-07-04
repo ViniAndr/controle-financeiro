@@ -53,7 +53,7 @@ export function calcularValores(seletorValor, seletorTipo) {
     const num = Number(valor.textContent.split(" ").pop());
 
     // Adiciona o valor ao tipo de lançamento correspondente
-    if (tipo == "pagamento") {
+    if (tipo == "receita") {
       valores[0] += num;
     } else {
       valores[1] += num;
