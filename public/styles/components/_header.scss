@@ -21,9 +21,18 @@
   .navbar {
     display: flex;
     align-items: center;
+    gap: 15px;
+  }
 
-    .btn {
-      margin-left: 15px;
+  .btn-nav {
+    color: rgba($color: #fff, $alpha: 0.6);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 7px 0;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #fff;
     }
   }
 }

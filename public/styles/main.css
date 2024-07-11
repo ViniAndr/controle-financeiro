@@ -164,9 +164,17 @@ hr {
 .cabecario .navbar {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
-.cabecario .navbar .btn {
-  margin-left: 15px;
+.cabecario .btn-nav {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 7px 0;
+  transition: color 0.2s ease-in-out;
+}
+.cabecario .btn-nav:hover {
+  color: #fff;
 }
 
 .alert {
