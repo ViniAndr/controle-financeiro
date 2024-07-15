@@ -1,4 +1,4 @@
-const TransacaoFinanceira = require("../model/TransacaoModel");
+const TransacaoFinanceira = require("../models/TransacaoModel");
 
 // tela principal
 exports.index = async (req, res) => {

@@ -29,5 +29,10 @@ router.get("/transacao/delete/:id", loginRequired, transacaoController.delete);
 
 //cartao
 router.get("/cartao", loginRequired, cartaoController.index);
+router.post("/cartao", loginRequired, cartaoController.buscarFaturas);
+router.get("/cartao/add", loginRequired, cartaoController.add);
+router.post("/cartao/register", loginRequired, cartaoController.register);
+router.get("/cartao/tranFa", loginRequired, cartaoController.tranFa);
+router.post("/cartao/tranFa", loginRequired, cartaoController.registerTran);
 
 module.exports = router;

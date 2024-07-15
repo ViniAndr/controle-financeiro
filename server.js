@@ -40,6 +40,8 @@ app.use(express.static(path.relative(__dirname, "public")));
 
 // Configuração do body-parser para interpretar corpos de requisição codificados como URL
 app.use(express.urlencoded({ extended: true }));
+// Middleware para processar JSON
+app.use(express.json());
 
 app.use(sessionOptions);
 app.use(flash());

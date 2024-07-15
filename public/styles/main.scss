@@ -5,7 +5,9 @@
 // Components
 @import "components/header";
 @import "components/message";
-@import "components/filterModal";
+@import "components/modal";
+@import "components/cartaoDeCredito";
 
 //pages
 @import "pages/home";
+@import "pages/cartaoIndex";

@@ -1,0 +1,48 @@
+<% if(dados) {%>
+<!-- For -->
+<% dados.forEach(dadosFatura =>{ %>
+<!-- cartao -->
+
+<div class="card-credito">
+  <!-- Cabecario do card -->
+  <div class="card-header">
+    <div class="card-brand">
+      <div class="brand-icon"></div>
+      <span><%= dadosFatura.nome %></span>
+    </div>
+    <!-- Option do cartao -->
+    <div class="card-options">
+      <span>&#8942;</span>
+    </div>
+  </div>
+
+  <!-- Corpo do card -->
+  <div class="card-body">
+    <h3 class="card-title titulo-fatura">Fatura aberta</h3>
+
+    <div class="card-detail">
+      <span class="label">Valor total:</span>
+      <span class="value valor-fatura" _valor="<%= dadosFatura.valor %>">R$ 00,00</span>
+    </div>
+
+    <div class="card-detail">
+      <span class="label">Vence em:</span>
+      <span class="value data-vencimento" _data="<%= dadosFatura.dataVencimento %>">DATA</span>
+    </div>
+
+    <div class="card-detail">
+      <span class="label">Limite Disponível:</span>
+      <span class="value limite-credito" _limite="<%= dadosFatura.limite %>">R$ 00,00</span>
+    </div>
+  </div>
+
+  <!-- Rodape do card -->
+  <div class="card-footer">
+    <button class="btn botao-principal">PAGAR FATURA</button>
+  </div>
+</div>
+
+<!-- fim forEach -->
+<% }) %>
+<!-- Fim do IF -->
+<% } %>

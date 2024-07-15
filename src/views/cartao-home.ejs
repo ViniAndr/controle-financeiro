@@ -1,0 +1,37 @@
+<%- include("includes/head") %> <%- include("includes/nav") %>
+
+<div class="container c-g">
+  <main class="cartao-home">
+    <aside class="cartoes-infos">
+      <!-- Algumas funções -->
+      <div class="funcoes">
+        <input id="inputMes" type="month" class="input-data div-padrao" />
+        <a href="/cartao/add" class="btn-add-cartao">+</a>
+        <btn id="btn-modal" class="btn-add-cartao">+</btn>
+      </div>
+
+      <!-- Limite total -->
+      <div class="infomacao div-padrao">
+        <h2>Limite total</h2>
+        <span id="limite-total">R$ 00,00</span>
+      </div>
+
+      <!-- valor total de todas faturas -->
+      <div class="infomacao div-padrao">
+        <h2>Valor total de todas faturas</h2>
+        <span id="valor-faturas">R$ 00,00</span>
+      </div>
+    </aside>
+
+    <!-- Cartoes -->
+    <div>
+      <h1>Cartoes de crétido</h1>
+      <div id="area-cartoes" class="grupo-cartoes"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal de add Transacao -->
+<%- include("includes/addTransacaoFaturaModal", {dados}) %>
+<!-- Rodape -->
+<%- include("includes/footer") %>

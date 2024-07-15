@@ -1,0 +1,42 @@
+<%- include("includes/head") %> <%- include("includes/nav") %>
+<div class="container c-s">
+  <div>
+    <h1>Criar Conta ou Entrar</h1>
+    <p class="titulo-descricao">Preencha os campos abaixo para poder entrar na sua conta:</p>
+    <%- include("includes/message") %>
+    <form action="/cartao/tranFa" method="post" class="form form-transacao-fatura" _dados="<%= dados %>">
+      <div class="form-group">
+        <label for="floatingInput">Descrição</label>
+        <input type="text" class="form-control" name="descricao" />
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">Categoria</label>
+        <input type="text" class="form-control" name="categoria" />
+      </div>
+
+      <div class="form-group">
+        <label>Cartão</label>
+        <select name="cartaoId" id="selectCartao" name="cartaoId"></select>
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">Valor</label>
+        <input type="number" class="form-control" name="valor" />
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">Data</label>
+        <input type="date" class="form-control" name="data" />
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">parcelas</label>
+        <input type="number" class="form-control" name="parcelas" />
+      </div>
+
+      <button id="btn-form" class="btn botao-principal" type="submit">ADD</button>
+    </form>
+  </div>
+</div>
+<%- include("includes/footer") %>

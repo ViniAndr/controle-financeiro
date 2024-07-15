@@ -1,0 +1,44 @@
+<div id="modal-fundo" class="modal">
+  <div class="modal-content c-s">
+    <div class="header-modal">
+      <h2>Transacao nova</h2>
+      <!-- Bnt de fechar -->
+      <span class="close-btn">&times;</span>
+    </div>
+
+    <form action="/cartao/tranFa" method="post" class="form-modal form-transacao-fatura" _dados="<%= dados %>">
+      <!-- Descricao -->
+      <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" class="form-control" name="descricao" />
+      </div>
+      <!-- Categoria -->
+      <div class="form-group">
+        <label>Categoria</label>
+        <input type="text" class="form-control" name="categoria" />
+      </div>
+      <!-- Cartao -->
+      <div class="form-group">
+        <label>Cartão</label>
+        <select name="cartaoId" id="selectCartao" name="cartaoId"></select>
+      </div>
+      <!-- Valor R$ -->
+      <div class="form-group">
+        <label>Valor</label>
+        <input type="number" class="form-control" name="valor" />
+      </div>
+      <!-- Data -->
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date" class="form-control" name="data" />
+      </div>
+      <!-- Parcelas -->
+      <div class="form-group">
+        <label>parcelas</label>
+        <input type="number" class="form-control" name="parcelas" />
+      </div>
+      <!-- BTN -->
+      <button id="btn-form btnAbriModal" class="btn botao-principal" type="submit">Adicionar Transação</button>
+    </form>
+  </div>
+</div>

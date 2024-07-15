@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #effffb;
+  background-color: #f0f2f5;
   font-family: "Poppins", sans-serif;
 }
 
@@ -55,11 +55,11 @@ body {
 }
 
 .botao-principal {
-  background-color: #3cb371;
+  background-color: #3d9740;
   color: #fff;
 }
 .botao-principal:hover {
-  background-color: #2f8d59;
+  background-color: #2e7331;
 }
 
 .botao-segundario {
@@ -67,7 +67,7 @@ body {
   color: #fff;
 }
 .botao-segundario:hover {
-  background-color: #2f8d59;
+  background-color: #2e7331;
 }
 
 .titulo-h1 {
@@ -143,6 +143,19 @@ hr {
   border-radius: 10px;
 }
 
+.form-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.div-padrao {
+  padding: 18px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .cabecario {
   width: 100%;
   height: 70px;
@@ -214,15 +227,9 @@ hr {
 
 .modal-content {
   background-color: #fff;
-  margin: 15% auto;
+  margin: 12% auto;
   padding: 20px;
   border-radius: 5px;
-}
-
-#filterForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .header-modal {
@@ -243,6 +250,68 @@ hr {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.card-credito {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.card-credito .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #3d9740;
+  color: #fff;
+}
+.card-credito .card-header .card-brand {
+  display: flex;
+  align-items: center;
+}
+.card-credito .card-header .brand-icon {
+  width: 24px;
+  height: 24px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.card-credito .card-header .card-options {
+  font-size: 20px;
+}
+.card-credito .card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-credito .card-body .card-title {
+  color: #3d9740;
+  margin-bottom: 6px;
+}
+.card-credito .card-body .card-detail {
+  display: flex;
+  justify-content: space-between;
+}
+.card-credito .card-body .label {
+  color: #555;
+}
+.card-credito .card-body .value {
+  color: #000;
+}
+.card-credito .card-footer {
+  padding: 16px;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+.card-credito .card-footer .btn-vencido {
+  background-color: #ff6f61;
+  color: #fff;
+}
+.card-credito .card-footer .btn-vencido:hover {
+  background-color: #ff412e;
 }
 
 .cards-flex {
@@ -287,7 +356,7 @@ hr {
   box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.1);
 }
 .table-transacoes th {
-  background-color: #3cb371;
+  background-color: #3d9740;
   color: #fff;
   padding: 10px;
   text-align: left;
@@ -353,6 +422,42 @@ hr {
   margin-top: 20px;
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.55);
+}
+
+.cartao-home {
+  display: flex;
+  gap: 40px;
+}
+.cartao-home .cartoes-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cartao-home .cartoes-infos .funcoes {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.cartao-home .cartoes-infos .funcoes .input-data {
+  outline: none;
+  border: none;
+}
+.cartao-home .cartoes-infos .funcoes .btn-add-cartao {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.cartao-home .grupo-cartoes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=main.css.map */

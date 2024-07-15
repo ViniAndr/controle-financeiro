@@ -1,0 +1,33 @@
+<%- include("includes/head") %> <%- include("includes/nav") %>
+<div class="container c-s">
+  <div>
+    <h1>Criar Conta ou Entrar</h1>
+    <p class="titulo-descricao">Preencha os campos abaixo para poder entrar na sua conta:</p>
+    <%- include("includes/message") %>
+    <form action="/cartao/register" method="POST" class="form">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="floatingInput">nome</label>
+        <input type="nome" class="form-control" placeholder="name@example.com" name="nome" />
+      </div>
+      <!-- Senha -->
+      <div class="form-group">
+        <label for="floatingPassword">limite</label>
+        <input type="number" class="form-control input-senha" placeholder="limite" name="limite" />
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">dia fechamento</label>
+        <input type="number" class="form-control input-senha" placeholder="fechamento" name="diaFechamento" />
+      </div>
+
+      <div class="form-group">
+        <label for="floatingPassword">dia de vencimento</label>
+        <input type="number" class="form-control input-senha" placeholder="vencimento" name="diaVencimento" />
+      </div>
+
+      <button class="btn botao-principal" type="submit">ADD</button>
+    </form>
+  </div>
+</div>
+<%- include("includes/footer") %>

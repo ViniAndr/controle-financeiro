@@ -1,4 +1,4 @@
-const TransacaoFinanceira = require("../model/TransacaoModel");
+const TransacaoFinanceira = require("../models/TransacaoModel");
 exports.index = (req, res) => {
   // passar lancamento vazio e tratar no ejs
   res.render("formTransacao", { transacao: {} });
@@ -8,7 +8,6 @@ exports.register = async (req, res) => {
   try {
     // Adicionando o ID do usuário logado na transação
     req.body.userId = req.session.user._id;
-    console.log(req.body);
 
     const transacao = new TransacaoFinanceira(req.body);
     await transacao.register();
