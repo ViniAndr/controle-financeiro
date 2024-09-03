@@ -17,7 +17,7 @@ export function formTransacao() {
     e.preventDefault();
     removeMsg();
     const valido = validar();
-    if (valido) formDespesa.submit();
+    if (valido) form.submit();
   });
 }
 
